@@ -3,6 +3,14 @@
 :root {
   --background: #ffffff;
   --foreground: #171717;
+  --color-dark-green: #184025;
+  --color-green-2: #C3EFD4;
+  --color-pink-1: #F0DDDB;
+  --color-yellow: #FDFBD4;
+  --color-pink-2: #FDE6D4;
+  --color-green-1: #d8efe1;
+  --color-text-green: #0a1b10;
+  --color-text-pink: #684440;
 }
 
 @theme inline {
@@ -10,6 +18,13 @@
   --color-foreground: var(--foreground);
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
+  --container-center: true;
+  --container-padding: 2rem;
+}
+
+
+.container {
+  @apply mx-auto max-w-7xl px-4;
 }
 
 @media (prefers-color-scheme: dark) {
@@ -19,8 +34,26 @@
   }
 }
 
+/* Webfont: Yekan */
+@font-face {
+  font-family: 'Yekan';
+  src:
+    url('/fonts/Yekan.woff2') format('woff2');
+
+
+  font-weight: normal;
+  font-style: normal;
+  text-rendering: optimizeLegibility;
+  font-display: auto;
+}
+
+
 body {
-  background: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: 'Yekan';
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
+  background-repeat: no-repeat;
+  direction: rtl;
 }
