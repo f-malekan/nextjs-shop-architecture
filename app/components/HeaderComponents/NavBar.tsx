@@ -10,7 +10,6 @@ const NavBar = async ({ className }: Props) => {
       <Link href="/">خانه</Link>
       <Link href="/products">محصولات</Link>
       <Link href="/contact-us">تماس با ما</Link>
-      <Link href="/">درباره ما</Link>
     </nav>
   );
 };
