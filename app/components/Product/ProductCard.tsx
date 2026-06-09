@@ -53,7 +53,7 @@ const ProductCard = ({ product, className = "", ...props }: Props) => {
           </p>
 
           <BaseButton
-            href={`${product.id}`}
+            href={`/products/${product.id}`}
             variant="dark"
             className="px-4 py-2"
           >

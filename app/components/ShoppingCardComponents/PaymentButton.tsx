@@ -3,10 +3,9 @@ import BaseButton from "../BaseComponents/BaseButton";
 import { createOrder } from "../../actions/shoppingCartActions";
 import useCartStore from "@/store/useCartStore";
 import { useState } from "react";
-import type { shoppingCartItemType } from "@/types";
 
-const PaymentButton = ({ items }: { items: shoppingCartItemType[] }) => {
-  const { removeCompletely } = useCartStore();
+const PaymentButton = () => {
+  const { items, removeCompletely } = useCartStore();
   const [error, setError] = useState<string | null>(null);
 
   const onClick = async () => {
