@@ -47,7 +47,7 @@ const ProductsPage = async ({ searchParams }: Props) => {
   }
 
   return (
-    <div className="grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-6 gap-3 mt-3 container mx-auto">
+    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 xl:grid-cols-6 gap-3 mt-3 container mx-auto">
       {products.map((product) => (
         <Link key={product.id} href={`/products/${product.id}`}>
           <ProductCard className="" product={product} />
