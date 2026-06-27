@@ -57,7 +57,6 @@ const SearchBar = ({ showSearch, setShowSearch }: Props) => {
               title="نتیجه جست و جو"
               href={`/products?search=${search}`}
               viewAllLabel
-              onClick={handleSeeAll}
             />
             <div className="container mx-auto mt-10">
               <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4  gap-6">

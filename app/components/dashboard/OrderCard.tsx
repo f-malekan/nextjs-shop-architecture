@@ -69,7 +69,12 @@ const OrderCard = ({ order }: { order: OrderType }) => {
       <div className="my-5 border-t border-dashed border-gray-200" />
 
       <div className="mt-4">
-        {order.items && <OrderItemsTable items={order.items} />}
+        {order.items && (
+          <OrderItemsTable
+            items={order.items}
+            totalAmount={order.totalAmount}
+          />
+        )}
       </div>
     </div>
   );

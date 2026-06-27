@@ -16,7 +16,6 @@
 
     "module": "ESNext",
     "target": "ES2023",
-    "ignoreDeprecations": "6.0",
 
     "plugins": [
       {

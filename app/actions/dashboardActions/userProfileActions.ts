@@ -41,7 +41,7 @@ export const updateProfile = async (data: UpdateProfileInput) => {
       return { success: false, message: "داده‌های وارد شده نامعتبر هستند" };
     }
 
-    const { name, email, phone } = parsed.data;
+    const { name, email } = parsed.data;
 
     if (email) {
       const existingUser = await prisma.user.findFirst({
@@ -61,7 +61,7 @@ export const updateProfile = async (data: UpdateProfileInput) => {
 
     await prisma.user.update({
       where: { id: session.user.id },
-      data: { name, email, phone },
+      data: { name, email },
     });
 
     return {
