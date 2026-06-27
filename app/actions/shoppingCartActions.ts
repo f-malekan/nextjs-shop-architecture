@@ -2,14 +2,13 @@
 
 import prisma from "@/lib/prisma";
 import { auth } from "../auth";
-import { Prisma } from "../generated/prisma/client";
 import type { ShoppingCartItemType } from "@/types";
 
 interface TempOrderItem {
   productId: string;
   variantId: string;
   quantity: number;
-  price: Prisma.Decimal;
+  price: number;
 }
 
 export async function createOrder(items: ShoppingCartItemType[]) {
@@ -40,9 +39,9 @@ export async function createOrder(items: ShoppingCartItemType[]) {
 
       const variantMap = new Map(dbVariants.map((v) => [v.id, v]));
 
-      let totalAmount = new Prisma.Decimal(0);
+      let totalAmount = 0;
       const orderItemsData: TempOrderItem[] = [];
-      const stockUpdates = [];
+      const stockUpdates: { id: string; quantity: number }[] = [];
 
       for (const item of items) {
         const dbVariant = variantMap.get(item.variantId);
@@ -55,11 +54,9 @@ export async function createOrder(items: ShoppingCartItemType[]) {
           throw new Error(`موجودی محصول ${item.name} کافی نیست.`);
         }
 
-        const unitPrice = new Prisma.Decimal(
-          dbVariant.product.price.toString(),
-        );
-        const itemTotal = unitPrice.mul(item.quantity);
-        totalAmount = totalAmount.add(itemTotal);
+        const unitPrice = Number(dbVariant.product.price);
+        const itemTotal = unitPrice * item.quantity;
+        totalAmount += itemTotal;
 
         orderItemsData.push({
           productId: dbVariant.productId,
