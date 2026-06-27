@@ -7,6 +7,7 @@ import { RiSearchLine } from "react-icons/ri";
 import type { Metadata } from "next";
 import { getAllProducts } from "../actions/productActions";
 import ErrorState from "../components/CommonComponents/ErrorState";
+import BasePagination from "../components/BaseComponents/BasePagination";
 
 export const metadata: Metadata = {
   title: "محصولات",
@@ -14,17 +15,21 @@ export const metadata: Metadata = {
 };
 
 interface Props {
-  searchParams: Promise<{ search?: string; category?: string }>;
+  searchParams: Promise<{ search?: string; category?: string; page?: number }>;
 }
 
 const ProductsPage = async ({ searchParams }: Props) => {
-  const { search, category } = await searchParams;
+  const { search, category, page :pageParam } = await searchParams;
+    const page = Number(pageParam) || 1;
+    
+
 
   const {
     data: products,
     success,
     message,
-  } = await getAllProducts(category, search);
+    totalCount
+  } = await getAllProducts(category, search, page);
 
   if (!success) return <ErrorState title={message} />;
 
@@ -46,14 +51,23 @@ const ProductsPage = async ({ searchParams }: Props) => {
     );
   }
 
+  const totalPages = Math.ceil(totalCount / 20)
+
+
   return (
-    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 xl:grid-cols-6 gap-3 mt-3 container mx-auto">
-      {products.map((product) => (
-        <Link key={product.id} href={`/products/${product.id}`}>
-          <ProductCard className="" product={product} />
-        </Link>
-      ))}
-    </div>
+    <>
+      {" "}
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 xl:grid-cols-5 gap-3 mt-3 container mx-auto">
+        {products.map((product) => (
+          <Link key={product.id} href={`/products/${product.id}`}>
+            <ProductCard className="" product={product} />
+          </Link>
+        ))}
+      </div>
+       {totalPages > 1 && (
+        <BasePagination currentPage={page} totalPages={totalPages} className="my-15"/>
+      )}
+    </>
   );
 };
 

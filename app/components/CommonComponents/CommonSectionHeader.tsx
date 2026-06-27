@@ -1,39 +1,34 @@
-import Link from "next/link";
 import { FiArrowLeft } from "react-icons/fi";
+import BaseButton from "../BaseComponents/BaseButton";
+import Link from "next/link";
 
 type SectionHeaderProps = {
   title: string;
   subtitle?: string;
-  href: string;
-  viewAllLabel?: string;
+  viewAllLabel?: boolean;
+  href?: string;
 };
 
 const CommonSectionHeader = ({
   title,
   subtitle,
+  viewAllLabel = false,
   href,
-  viewAllLabel = "مشاهده همه",
 }: SectionHeaderProps) => {
   return (
-    <div className="w-full flex items-end justify-between gap-4 py-6 rtl border-b border-(--color-text-pink)">
-      <div className="text-right">
-        <h2 className="text-2xl md:text-3xl font-bold text-[#6a4a42]">
-          {title}
-        </h2>
+    <div className="w-full flex items-end justify-between gap-4 border-b border-gray-6 text-gray-10">
+      <div>
+        <h2 className="mb-2">{title}</h2>
 
-        {subtitle && (
-          <p className="mt-2 text-sm md:text-base text-[#8b6f67]">{subtitle}</p>
-        )}
+        {subtitle && <p>{subtitle}</p>}
       </div>
+      {viewAllLabel && href ? (
+        <Link href={href}>
+          <span>مشاهده همه</span>
 
-      <Link
-        href={href}
-        className="group inline-flex items-center gap-2 text-sm font-medium text-[#6a4a42] transition-colors hover:text-[#184025]"
-      >
-        <span>{viewAllLabel}</span>
-
-        <FiArrowLeft className="transition-transform group-hover:-translate-x-1" />
-      </Link>
+          <FiArrowLeft className="transition-transform group-hover:-translate-x-1" />
+        </Link>
+      ) : null}
     </div>
   );
 };

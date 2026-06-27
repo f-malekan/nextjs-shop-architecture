@@ -4,11 +4,19 @@ import { ReactNode } from "react";
 interface Props {
   href?: string;
   onClick?: () => void;
-  variant?: "primary" | "secondary" | "dark";
+  variant?:
+    | "primary"
+    | "secondary"
+    | "dark"
+    | "danger"
+    | "white"
+    | "ghost"
+    | "ghost-primary";
   children: ReactNode;
   type?: "button" | "submit" | "reset";
   className?: string;
   disabled?: boolean;
+  loading?: boolean;
 }
 
 const BaseButton = ({
@@ -19,34 +27,63 @@ const BaseButton = ({
   type = "button",
   className = "",
   disabled = false,
+  loading = false,
 }: Props) => {
+  const isDisabled = disabled || loading;
+
   const baseStyles =
-    "inline-flex items-center justify-center px-4 py-2 h-10 rounded-lg text-sm font-medium transition-colors duration-200";
+    "inline-flex items-center justify-center gap-2 px-4 py-2 h-10 rounded-lg text-sm font-medium transition-all duration-200 select-none focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2";
 
   const variantStyles = {
-    primary: "bg-[#184025] text-white hover:bg-[#0f2a19]",
-    secondary: "border-2 border-[#184025] text-[#184025] hover:bg-[#184025]/10",
-    dark: "bg-black text-white hover:bg-neutral-800",
+    primary:
+      "bg-primary text-white hover:bg-primary-shade-1 active:bg-primary-shade-4",
+    secondary:
+      "border border-primary text-primary bg-transparent hover:bg-primary-tint-1 active:bg-primary-tint-1/80",
+    dark: "bg-black text-white hover:bg-gray-11 active:bg-gray-10",
+    danger:
+      "bg-error text-white hover:brightness-95 active:brightness-90 focus-visible:ring-error",
+    white:
+      "bg-white border border-gray-4 text-gray-10 hover:bg-gray-2 active:bg-gray-4",
+    ghost: "bg-transparent text-gray-10 hover:bg-gray-2 active:bg-gray-4",
+    "ghost-primary":
+      "bg-transparent text-primary hover:bg-primary-tint-1 active:bg-primary-tint-1/80",
   };
 
-  const classes = `${baseStyles} ${variantStyles[variant]} ${className}`;
+  const stateStyles = isDisabled
+    ? "opacity-50 pointer-events-none cursor-not-allowed"
+    : "cursor-pointer";
 
-  if (href) {
+  const classes = `${baseStyles} ${variantStyles[variant]} ${stateStyles} ${className}`;
+
+  const content = loading ? (
+    <>
+      <span className="inline-block h-4 w-4 animate-spin rounded-full border-2 border-current border-t-transparent" />
+      <span>در حال پردازش...</span>
+    </>
+  ) : (
+    children
+  );
+
+  if (href && !isDisabled) {
     return (
       <Link href={href} className={classes}>
-        {children}
+        {content}
       </Link>
     );
+  }
+
+  if (href && isDisabled) {
+    return <span className={classes}>{content}</span>;
   }
 
   return (
     <button
       type={type}
       onClick={onClick}
-      disabled={disabled}
+      disabled={isDisabled}
       className={classes}
     >
-      {children}
+      {content}
     </button>
   );
 };

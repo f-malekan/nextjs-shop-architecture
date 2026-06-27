@@ -1,7 +1,14 @@
 "use server";
 import prisma from "@/lib/prisma";
 
-export const saveContactMessage = async (data: any) => {
+interface ContactMessageData {
+    name: string;
+    email: string;
+    subject: string;
+    message: string;
+}
+
+export const saveContactMessage = async (data: ContactMessageData) => {
   try {
     await prisma.contactMessage.create({
       data: {

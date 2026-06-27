@@ -6,6 +6,7 @@ import type { NextAuthConfig } from "next-auth";
 import bcrypt from "bcryptjs";
 
 const authOptions: NextAuthConfig = {
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   adapter: PrismaAdapter(prisma as any),
   session: {
     strategy: 'jwt'
@@ -25,7 +26,7 @@ const authOptions: NextAuthConfig = {
           },
         });
 
-        if (!user || !user.password) return null;
+        if (!user?.password) return null;
 
         const isPasswordValid = await bcrypt.compare(
           credentials.password as string,

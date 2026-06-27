@@ -1,6 +1,6 @@
 import { create } from "zustand";
 import { persist } from "zustand/middleware";
-import type { shoppingCartItemType, AddedProductType, CartStoreType } from "@/types";
+import type { ShoppingCartItemType, AddedProductType, CartStoreType } from "@/types";
 
 const useCartStore = create<CartStoreType>()(
   persist(
@@ -10,7 +10,7 @@ const useCartStore = create<CartStoreType>()(
       addItem: (product: AddedProductType) =>
         set((state: CartStoreType) => {
           const existingItem = state.items.find(
-            (item: shoppingCartItemType) => item.variantId === product.variantId,
+            (item: ShoppingCartItemType) => item.variantId === product.variantId,
           );
           if (existingItem) {
             return {

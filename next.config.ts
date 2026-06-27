@@ -14,6 +14,7 @@ const nextConfig: NextConfig = {
         hostname: "eynakchi.com",
       },
       { protocol: "https", hostname: "s4.uupload.ir" },
+      { protocol: "https", hostname: "crepemezon.ir" },
     ],
   },
 };

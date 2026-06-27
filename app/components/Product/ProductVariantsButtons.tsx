@@ -1,6 +1,7 @@
 "use client";
 import type { ProductVariant } from "@/types";
-import { useState, useMemo } from "react";
+import { useMemo } from "react";
+import { HiCheck } from "react-icons/hi";
 
 const ProductDetails = ({
   variants,
@@ -15,7 +16,6 @@ const ProductDetails = ({
   onClickOnColor: (colorId: string) => void;
   onClickOnSize: (sizeId: string) => void;
 }) => {
-  const first = variants[0];
 
   const colors = useMemo(() => {
     const map = new Map();
@@ -30,10 +30,10 @@ const ProductDetails = ({
   }, [variants, selectedColorId]);
 
   return (
-    <div className="space-y-6 p-4">
+    <div className="space-y-6">
       {/* Colors */}
       <div>
-        <p className="mb-2 text-sm font-medium text-gray-700">رنگ</p>
+        <p className="mb-2 text-sm font-medium">رنگبندی</p>
         <div className="flex gap-2 flex-wrap">
           {colors.map((color) => {
             const active = color.id === selectedColorId;
@@ -50,14 +50,15 @@ const ProductDetails = ({
 
                   if (firstSize) onClickOnSize(firstSize);
                 }}
-                className={`px-3 py-1.5 rounded-lg border text-sm transition
-                ${
-                  active
-                    ? "bg-black text-white border-black"
-                    : "bg-white hover:bg-gray-100 border-gray-300"
-                }`}
+                className={` p-1 rounded-lg text-sm transition`}
               >
-                {color.name}
+                <div
+                  key={color?.id}
+                  style={{ backgroundColor: color?.hexCode }}
+                  className="h-10 w-10 rounded flex justify-center items-center"
+                >
+                  {active && <HiCheck color="white" />}
+                </div>
               </button>
             );
           })}
@@ -66,23 +67,23 @@ const ProductDetails = ({
 
       {/* Sizes */}
       <div>
-        <p className="mb-2 text-sm font-medium text-gray-700">سایز</p>
+        <p className="mb-2 text-sm font-medium">سایزبندی</p>
         <div className="flex gap-2 flex-wrap">
           {sizes.map((size) => {
-            const active = size.id === selectedSizeId;
+            const active = size!.id === selectedSizeId;
 
             return (
               <button
-                key={size.id}
-                onClick={() => onClickOnSize(size.id)}
+                key={size!.id}
+                onClick={() => onClickOnSize(size!.id)}
                 className={`px-3 py-1.5 rounded-lg border text-sm transition
                 ${
                   active
-                    ? "bg-black text-white border-black"
+                    ? "bg-primary-shade-4 text-white"
                     : "bg-white hover:bg-gray-100 border-gray-300"
                 }`}
               >
-                {size.name}
+                {size!.name}
               </button>
             );
           })}

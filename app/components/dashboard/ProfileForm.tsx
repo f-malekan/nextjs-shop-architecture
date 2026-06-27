@@ -9,8 +9,9 @@ import {
 import { updateProfile } from "@/app/actions/dashboardActions/userProfileActions";
 import BaseInput from "../BaseComponents/BaseInput";
 import BaseButton from "../BaseComponents/BaseButton";
+import { UserType } from "@/types";
 
-const ProfileForm = ({ user }: { user: any }) => {
+const ProfileForm = ({ user }: { user: { email: string; name: string } }) => {
   const {
     register,
     handleSubmit,
@@ -27,22 +28,26 @@ const ProfileForm = ({ user }: { user: any }) => {
   async function onSubmit(data: UpdateProfileInput) {
     try {
       const result = await updateProfile(data);
-      if (!result?.success) {
-        alert(result.message);
-      } else {
+      if (result?.success) {
         reset();
         alert("رمز عبور با موفقیت تغییر کرد ✅");
+      } else {
+        alert(result.message);
       }
-    } catch (error: any) {
+    } catch (error: unknown) {
+      if (error instanceof Error) {
+        console.error(error.message);
+      } else {
+        console.error("An unexpected error occurred", error);
+      }
       alert("خطایی رخ داده است. مجدداً تلاش کنید.");
     }
   }
 
   return (
-    /* یک کانتینر با حداکثر عرض مشخص (مثلاً max-w-xl) و وسط‌چین */
-    <div className="w-full max-w-2xl mx-auto p-6 bg-white rounded-2xl shadow-sm border border-gray-100">
-      <h2 className="text-xl font-bold text-gray-800 mb-6 border-b pb-4">
-        ویرایش اطلاعات کاربری
+    <div className="w-full p-6 bg-white rounded-2xl border border-gray-4">
+      <h2 className="text-xl text-gray-10 mb-6 border-b border-gray-4 pb-4">
+        اطلاعات حساب کاربری
       </h2>
 
       <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
@@ -61,13 +66,12 @@ const ProfileForm = ({ user }: { user: any }) => {
           />
         </div>
 
-        {/* بخش دکمه با تراز بندی بهتر */}
-        <div className="flex justify-end pt-4 border-t">
+        <div className="flex justify-end pt-4">
           <div className="w-full md:w-1/3">
             <BaseButton
               type="submit"
               disabled={isSubmitting}
-              className="w-full" // دکمه را در موبایل تمام عرض و در دسکتاپ متناسب می‌کند
+              className="w-full"
             >
               {isSubmitting ? "در حال بروزرسانی..." : "ذخیره تغییرات"}
             </BaseButton>

@@ -7,13 +7,13 @@ import AddToCartButton from "./AddToCartButton";
 
 const ProductClientComponents = ({ product }: { product: Product }) => {
   const [selectedColorId, setSelectedColorId] = useState(
-    product.variants[0].colorId,
+    product.variants![0].colorId,
   );
   const [selectedSizeId, setSelectedSizeId] = useState(
-    product.variants[0].sizeId,
+    product.variants![0].sizeId,
   );
 
-  const selectedVariant = product?.variants.find(
+  const selectedVariant = product?.variants!.find(
     (v) => v.colorId === selectedColorId && v.sizeId === selectedSizeId,
   );
 
@@ -23,13 +23,13 @@ const ProductClientComponents = ({ product }: { product: Product }) => {
     <div>
       {" "}
       <ProductVariantsSelectBox
-        variants={product.variants}
+        variants={product.variants!}
         selectedColorId={selectedColorId}
         selectedSizeId={selectedSizeId}
         onClickOnColor={(id) => setSelectedColorId(id)}
         onClickOnSize={(id) => setSelectedSizeId(id)}
       />
-      <div className="flex gap-5">
+      <div className="flex gap-5 mt-10">
         <ProductCounter
           productId={product.id}
           name={product.name}

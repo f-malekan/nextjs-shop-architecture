@@ -1,6 +1,6 @@
 "use client";
 import useCartStore from "@/store/useCartStore";
-import type { Product, ProductVariant } from "@/types";
+import type { ProductVariant } from "@/types";
 
 interface Props {
   variantId: string;

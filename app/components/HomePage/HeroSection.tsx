@@ -1,67 +1,72 @@
 import Image from "next/image";
-import Link from "next/link";
-import { FaArrowLeft } from "react-icons/fa";
+import HeroSlider from "./HeroSlider";
+import BaseLink from "../BaseComponents/BaseLink";
+import BaseTag from "../BaseComponents/BaseTag";
 
-const HeroSection = () => {
+const badges = ["کالکشن‌های متنوع", "مد و فشن", "سبک و شیک"];
+
+export default function HeroSection() {
   return (
-    <div className="bg-[#C3EFD4] 
-      px-6 py-10 md:px-16 lg:px-32 
-      flex flex-col-reverse lg:flex-row 
-      min-h-[calc(100dvh-80px)] lg:h-[calc(100dvh-80px)] 
-      gap-10 lg:gap-20 items-center justify-center">
-      
-      {/* متن و دکمه */}
-      <div className="w-full lg:basis-2/3 text-center lg:text-right">
-        <h2 className="text-[#184025] text-3xl md:text-4xl lg:text-5xl font-extrabold leading-tight lg:leading-normal">
-          کشف کن و استایل مخصوص خودت رو پیدا کن؛ جایی که هر انتخاب، داستان تو رو
-          تعریف می‌کنه.
-        </h2>
+    <section className="w-full bg-white py-6 md:py-10" dir="rtl">
+      <div className="pl-0 pr-3 md:pr-5">
+        {/* HERO TOP */}
+        <div className="grid grid-cols-1 lg:grid-cols-12 items-center gap-6">
+          <div className="lg:col-span-4 lg:h-full">
+            <div className="relative w-full h-full rounded-3xl overflow-hidden bg-neutral-100">
+              <Image
+                sizes="(max-width: 768px) 100vw, 300px"
+                src={"/images/dress-bb.webp"}
+                alt="dress"
+                fill
+                className="object-cover object-top"
+                priority
+              ></Image>
+            </div>
+          </div>
 
-        <Link
-          href="/products"
-          className="
-            group inline-flex items-center gap-3 mt-8
-            rounded-2xl bg-[#184025] text-white
-            px-6 py-3 text-lg font-semibold
-            shadow-lg shadow-[#184025]/20
-            transition-all duration-200
-            hover:-translate-y-0.5 hover:bg-[#0f2f1a]
-            focus:outline-none focus:ring-4 focus:ring-[#184025]/25
-          "
-        >
-          <span>مشاهده محصولات</span>
-          <FaArrowLeft
-            className="
-              text-base transition-transform duration-200
-              group-hover:-translate-x-1
-            "
-          />
-        </Link>
-      </div>
+          <div className="lg:col-span-8 order-2 text-right">
+            <h1 className="text-3xl md:text-5xl font-bold leading-tight text-neutral-900 pl-4">
+              لباس‌هایی که داستان شما را
+              <br className="hidden md:block" />
+              روایت می‌کنند
+            </h1>
 
-      {/* تصویر */}
-      <div className="w-full lg:basis-1/3 flex justify-center items-center">
-        <div
-          className="relative w-64 h-80 md:w-80 md:h-100
-            rounded-tl-[40px]
-            rounded-tr-lg
-            rounded-br-[40px] 
-            rounded-bl-lg
-            bg-[#6AC685]
-            flex items-center justify-center"
-        >
-          <Image
-            src={"/images/green-dress.png"}
-            alt="green dress"
-            width={300}
-            height={400}
-            className="w-[90%] h-auto drop-shadow-2xl"
-            priority
-          />
+            <p className="mt-4 text-sm md:text-base text-neutral-600 leading-8 max-w-xl ml-auto pl-4">
+              هر لباس با دقت و عشق طراحی شده تا شما احساس زیبایی و اعتماد به نفس
+              داشته باشید.
+            </p>
+
+            {/* badges row */}
+            <div className="mt-6 flex flex-wrap justify-start gap-2">
+              {badges.map((item, index) => (
+                <BaseTag key={index}>{item}</BaseTag>
+              ))}
+            </div>
+
+            <div className="flex items-center gap-2 my-5">
+              <BaseLink href="/">
+                مشاهده کالکشن ها
+              </BaseLink>
+              <svg
+                width="49"
+                height="40"
+                viewBox="0 0 49 40"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  fillRule="evenodd"
+                  clipRule="evenodd"
+                  d="M0.00439173 0.922519C-0.155158 2.32923 4.0883 17.4867 5.64241 20.9873C7.95685 26.2006 11.6831 30.8672 15.5595 33.4068C18.6433 35.4273 22.069 36.239 24.8599 35.6107C26.4725 35.2476 27.2837 34.832 28.6783 33.6549L29.8824 32.6385L31.1097 33.3881C35.1831 35.8757 40.2344 37.331 44.4329 37.2263C45.0725 37.2103 45.5914 37.2365 45.586 37.2844C45.5805 37.3323 44.584 37.741 43.3716 38.1927C42.1591 38.6443 41.1086 39.1126 41.0372 39.2332C40.7969 39.6393 41.2459 39.9386 41.9002 39.8085C43.133 39.5634 47.6267 37.8405 48.1922 37.3961C48.6405 37.0438 48.624 36.8725 48.0742 36.1719C47.7401 35.7462 47.1486 35.357 45.521 34.4923C42.8775 33.0879 42.4107 32.8983 42.1321 33.1157C41.9417 33.2643 41.9701 33.3428 42.3349 33.6767C42.5681 33.8905 43.4068 34.4652 44.1986 34.9542C44.9904 35.4432 45.6355 35.8766 45.6323 35.9172C45.6206 36.0642 42.9175 35.8761 41.4152 35.6238C38.588 35.1489 36.3704 34.4672 34.0481 33.3592C32.7792 32.7537 30.6392 31.5473 30.6668 31.4529C30.675 31.4247 30.89 31.0399 31.1446 30.5979C32.0214 29.0757 32.7628 26.4942 32.9437 24.3343C33.4563 18.2098 30.4161 11.8743 26.3459 10.5849C25.822 10.419 25.1768 10.3729 24.5852 10.4594C23.7683 10.5787 23.5413 10.6827 22.7709 11.2905C21.4904 12.3006 20.9539 13.484 20.6859 15.8892C20.3852 18.5854 20.8776 21.2204 22.2095 24.044C22.934 25.5799 25.9987 29.4923 27.5215 30.8252C28.0907 31.3235 28.5504 31.7833 28.5432 31.8473C28.5359 31.9111 28.1609 32.2851 27.71 32.6783C26.2695 33.9342 24.5691 34.5051 22.5292 34.4179C16.7924 34.1722 10.4799 28.5921 6.87624 20.5807C5.63683 17.8256 1.01584 2.62399 0.866237 0.879289C0.815027 0.281652 0.734186 0.0630888 0.549064 0.0221056C0.174318 -0.060749 0.102309 0.0581827 0.00439173 0.922519ZM24.0885 11.704C25.9439 10.9368 28.2235 12.482 29.9331 15.6655C31.4739 18.5352 31.963 21.5571 31.4543 25.0649C31.1704 27.022 30.6702 28.6761 30.0086 29.8462C29.4493 30.8354 29.5983 30.8767 27.8167 29.2373C26.3352 27.8741 23.9696 24.9339 23.3693 23.7099C22.6494 22.242 22.0734 20.5413 21.7797 19.018C21.3048 16.5537 21.8264 13.7682 22.9925 12.5406C23.2502 12.2695 23.4821 12.0201 23.5078 11.9862C23.5336 11.9525 23.7949 11.8254 24.0885 11.704Z"
+                  fill="#0B0C17"
+                />
+              </svg>
+            </div>
+
+            <HeroSlider />
+          </div>
         </div>
       </div>
-    </div>
+    </section>
   );
-};
-
-export default HeroSection;
+}

@@ -1,4 +1,4 @@
-export const revalidate = 60
+export const revalidate = 60;
 
 import Image from "next/image";
 import { getProductWithVariants } from "@/app/actions/productActions";
@@ -41,35 +41,32 @@ const ProductDetailsPage = async ({ params }: Props) => {
   if (!success || !product) return <ErrorState title={message} />;
 
   return (
-    <div className="container mx-auto px-4 py-10">
+    <div className="container mx-auto px-4 py-5">
       <div className="grid md:grid-cols-2 gap-10 items-start">
-        <div className="bg-gray-100 rounded-xl p-6 flex justify-center">
+        <div className=" relative aspect-square w-full rounded-xl flex justify-center">
           <Image
             src={product.image}
             alt={product.name}
-            width={500}
-            height={500}
-            className="object-contain rounded-lg"
+            fill
+            className="object-cover rounded-lg"
             priority
           />
         </div>
 
         <div className="space-y-6">
-          <h1 className="text-2xl font-semibold text-gray-900">
-            {product.name}
-          </h1>
+          <h1 className="text-2xl font-semibold">{product.name}</h1>
 
-          <div className="text-2xl font-bold text-gray-900">
+          <div className="text-xl font-bold">
             {Number(product.price).toLocaleString()} تومان
           </div>
 
-          <ProductClientComponents product={product} />
-
           {product.description && (
-            <div className="border-t pt-4 text-gray-600 leading-relaxed">
+            <div className="pt-4 leading-relaxed">
               {product.description}
             </div>
           )}
+
+          <ProductClientComponents product={product} />
         </div>
       </div>
     </div>

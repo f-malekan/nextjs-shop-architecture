@@ -26,10 +26,11 @@ const AddToCartButton = ({
   selectedVariant,
 }: Props) => {
   const { addItem } = useCartStore();
-
+console.log(selectedVariant?.color?.hexCode, selectedVariant?.size?.name)
   return (
     <BaseButton
       variant="primary"
+      className="w-full"
       onClick={() =>
         addItem({
           variantId: variantId,

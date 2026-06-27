@@ -17,7 +17,7 @@ const BaseSelect = ({
   return (
     <div className={`space-y-1.5 ${containerClassName}`}>
       {label && (
-        <label className="block text-sm font-semibold text-[#184025]">
+        <label className="block text-sm font-semibold text-gray-10">
           {label}
         </label>
       )}
@@ -26,13 +26,14 @@ const BaseSelect = ({
         {...props}
         className={`
           w-full p-3 rounded-xl
-          border bg-white
-          text-sm text-slate-700
+          border border-gray-6 bg-white
+          text-sm  text-slate-700 placeholder:text-slate-400
           outline-none transition
+         focus:border-gray-10
           ${
             error
               ? "border-red-500 focus:ring-2 focus:ring-red-200"
-              : "border-emerald-200 focus:border-[#84B095] focus:ring-4 focus:ring-[#C3EFD4]"
+              : ""
           }
           ${className}
         `}

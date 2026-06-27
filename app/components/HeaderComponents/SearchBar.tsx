@@ -1,58 +1,78 @@
 "use client";
-import React, { useState } from "react";
-import { useRouter, useSearchParams } from "next/navigation";
+import { useState } from "react";
+import { useRouter } from "next/navigation";
 import { useDebouncedCallback } from "use-debounce";
-import { FaSearch } from "react-icons/fa";
 import BaseInput from "../BaseComponents/BaseInput";
+import { searchProducts } from "@/app/actions/productActions";
+import { Product } from "@/types";
+import ProductCard from "../Product/ProductCard";
+import CommonSectionHeader from "../CommonComponents/CommonSectionHeader";
 
-const SearchBar = () => {
-  const [showSearch, setShowSearch] = useState(false);
-  const searchParams = useSearchParams();
+interface Props {
+  showSearch: boolean;
+  setShowSearch: (data: boolean) => void;
+}
+
+const SearchBar = ({ showSearch, setShowSearch }: Props) => {
+  const [search, setSearch] = useState("");
   const router = useRouter();
+  const [products, setProducts] = useState<Product[]>();
 
-  const handleSearch = useDebouncedCallback((value: string) => {
-    const params = new URLSearchParams(searchParams);
+  const handleSearch = useDebouncedCallback(async (value: string) => {
+    if (value.length < 3) {
+      setProducts([]);
+      return;
+    }
+    setSearch(value);
+    const response = await searchProducts(value);
 
-    if (value) params.set("search", value);
-    else params.delete("search");
-
-    router.push(`/products?${params.toString()}`);
+    if (response.success && response.data) {
+      setProducts(response.data);
+    }
   }, 300);
 
-  return (
-    <div className="relative flex items-center justify-end">
-      <div
-        className={[
-          "relative overflow-hidden transition-all duration-300 ease-out",
-          showSearch ? "w-64 opacity-100" : "w-0 opacity-0",
-        ].join(" ")}
-      >
-        <span className="pointer-events-none absolute inset-y-0 left-3 flex items-center text-emerald-600/70">
-          <FaSearch className="text-sm" />
-        </span>
+  const handleSeeAll = () => {
+    router.push(`/products?search=${search}`);
+    setShowSearch(false);
+  };
 
+  return (
+    <div
+      className={[
+        "fixed flex flex-col right-0 top-25 overflow-hidden transition-all duration-300 ease-out z-50",
+        showSearch ? "h-screen w-screen opacity-100" : "h-0 opacity-0",
+      ].join(" ")}
+    >
+      <div className="bg-white px-40">
         <BaseInput
           type="text"
           placeholder="جستجو کنید.."
           onChange={(event) => handleSearch(event.target.value)}
+          className="w-[75%] mb-5"
         />
-      </div>
 
-      {/* Button */}
-      <button
-        type="button"
-        onClick={() => setShowSearch((s) => !s)}
-        className="
-          ml-2 inline-flex h-10 w-10 items-center justify-center rounded-xl
-          border border-emerald-200 bg-white/70 text-emerald-700 shadow-sm
-          hover:bg-emerald-50 hover:border-emerald-300
-          active:scale-95 transition
-          focus:outline-none focus:ring-4 focus:ring-emerald-200/60 cursor-pointer
-        "
-        aria-label="Toggle search"
-      >
-        <FaSearch className="text-lg" />
-      </button>
+        {search.length > 0 && (
+          <section>
+            <CommonSectionHeader
+              title="نتیجه جست و جو"
+              href={`/products?search=${search}`}
+              viewAllLabel
+              onClick={handleSeeAll}
+            />
+            <div className="container mx-auto mt-10">
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4  gap-6">
+                {products?.map((product) => (
+                  <ProductCard
+                    key={product.id}
+                    product={{ ...product, price: Number(product.price) }}
+                  />
+                ))}
+              </div>
+            </div>
+          </section>
+        )}
+      </div>
+      <div className="bg-gray-10/90 grow"></div>
     </div>
   );
 };

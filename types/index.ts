@@ -1,6 +1,7 @@
 export interface Color {
   id: string;
   name: string;
+  hexCode: string;
 }
 
 export interface Size {
@@ -13,12 +14,14 @@ export interface ProductVariant {
   productId: string;
   colorId: string;
   sizeId: string;
-  color: Color;
-  size: Size;
   stock: number;
   sku: string;
   createdAt: Date;
   updatedAt: Date;
+
+  color?: Color;
+  size?: Size;
+  product?: Product;
 }
 
 export interface Product {
@@ -26,21 +29,31 @@ export interface Product {
   name: string;
   description: string | null;
   image: string;
+
   price: number;
+  discountPercent?: number | null;
+
+  categoryId: string;
+  category?: CategoryType;
+
   createdAt: Date;
   updatedAt: Date;
+
   variants?: ProductVariant[];
 }
 
-export interface shoppingCartItemType {
+export interface ShoppingCartItemType {
   variantId: string;
   productId: string;
   name: string;
   image: string;
   color: string;
   size: string;
+
   price: number;
   quantity: number;
+
+  selectedVariant?: ProductVariant;
 }
 
 export interface AddedProductType {
@@ -50,15 +63,19 @@ export interface AddedProductType {
   image: string;
   color: string;
   size: string;
+
   price: number;
+
   selectedVariant?: ProductVariant;
 }
 
 export interface CartStoreType {
-  items: shoppingCartItemType[];
+  items: ShoppingCartItemType[];
+
   addItem: (product: AddedProductType) => void;
   removeItem: (variantId: string) => void;
   removeCompletely: (variantId: string) => void;
+
   getTotalPrice: () => number;
   getTotalItems: () => number;
 }
@@ -67,7 +84,9 @@ export interface CategoryType {
   id: string;
   name: string;
   slug: string;
+
   products?: Product[];
+
   createdAt: Date;
 }
 
@@ -78,49 +97,81 @@ export interface UserType {
   emailVerified: Date;
   image: string;
   password: string;
-  // accounts: Account[]
-  // sessions: Session[]
-  // orders:   Order[]
+
+  orders?: OrderType[];
+  addresses?: AddressType[];
 }
 
 export type ActionResultType<T = void> = {
   success: boolean;
-  data?: T; 
+  data?: T;
   message?: string;
 };
 
+export enum OrderStatus {
+  PENDING = "PENDING",
+  PAID = "PAID",
+  FAILED = "FAILED",
+  CANCELLED = "CANCELLED",
+}
+
+export interface AddressType {
+  id: string;
+  title: string;
+  receiverName?: string | null;
+  phoneNumber?: string | null;
+  province: string;
+  city: string;
+  fullAddress: string;
+  postalCode: string;
+
+  isDefault?: boolean;
+  isDeleted: boolean;
+
+  userId: string;
+}
 
 export interface OrderType {
-    id: string;
-    userId: string;
-    totalAmount: number;
-    status: OrderStatus ;
-    createdAt :Date;
-    updatedAt :Date;
-    items?: OrderItemType[]
-    }
+  id: string;
 
-  export enum OrderStatus {
-    PENDING = "PENDING",
-    PAID = "PAID",
-    FAILED = "FAILED",
-    CANCELLED = "CANCELLED",
-  }
-  
-  export interface OrderItemType {
-    id: string;
-  
-    orderId: string;
-    order: OrderType;
-  
-    productId: string;
-    product: Product;
-  
-    variantId: string;
-    variant: ProductVariant;
-  
-    quantity: number;
-  
-    price: number; 
-  }
-  
+  userId: string;
+
+  totalAmount: number;
+  totalDiscount: number;
+  shippingCost: number;
+
+  status: OrderStatus;
+
+  createdAt: Date;
+  updatedAt: Date;
+
+  items?: OrderItemType[];
+
+  addressId?: string | null;
+  address?: AddressType | null; 
+
+  shippingReceiverName: string;
+  shippingPhone: string;
+  shippingProvince: string;
+  shippingCity: string;
+  shippingAddress: string;
+  shippingPostalCode: string;
+}
+
+export interface OrderItemType {
+  id: string;
+
+  orderId: string;
+  order?: OrderType;
+
+  productId: string;
+  product?: Product;
+
+  variantId: string;
+  variant: ProductVariant;
+
+  quantity: number;
+
+  price: number;
+  discount: number;
+}

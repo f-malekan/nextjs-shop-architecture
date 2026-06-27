@@ -5,6 +5,7 @@ import { Suspense } from "react";
 import MainHeader from "./components/HeaderComponents/MainHeader";
 import AuthProvider from "./auth/Provider";
 import Footer from "./components/Footer";
+import AuthModal from "./components/Auth/AuthModal";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -39,7 +40,7 @@ export default function RootLayout({
           <MainHeader />
           <Suspense fallback={<p>loading...</p>}>{children}</Suspense>
         </AuthProvider>
-
+        <AuthModal />
         <Footer />
       </body>
     </html>

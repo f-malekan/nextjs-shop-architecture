@@ -1,27 +1,24 @@
-import { auth } from "../../auth"; // از آدرس فایل auth سروری
-import Link from "next/link";
-import UserMenu from "../HeaderComponents/UserMenu";
+"use client";
 
-const SignInButtopn = async () => {
-  const session = await auth();
+import UserMenu from "../HeaderComponents/UserMenu";
+import { useSession } from "next-auth/react";
+import BaseButton from "../BaseComponents/BaseButton";
+import { useAuthModalStore } from "@/store/useAuthModalStore";
+
+const SignInButtopn = () => {
+  const { data: session } = useSession();
   const user = session?.user;
-  console.log(user)
+
+  const { openModal } = useAuthModalStore();
 
   if (!user) {
-    return (
-      <Link href="/login" className="text-sm font-medium">
-        ثبت نام و ورود
-      </Link>
-    );
+    return <BaseButton onClick={openModal}>ورود و ثبت نام</BaseButton>;
   }
 
   return (
     <div className="flex items-center gap-1">
-      
-      <UserMenu 
-        name={user.name ?? "کاربر"} 
-        email={user.email ?? ""} 
-        image={user.image ?? ""} 
+      <UserMenu
+        name={user.name ?? "کاربر"}
       />
     </div>
   );

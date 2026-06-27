@@ -1,13 +1,29 @@
-const NavItem = ({ href, label, active = false }: any) => {
+import { IconType } from "react-icons/lib";
+
+interface Props {
+  icon: IconType;
+  href: string;
+  label: string;
+  active?: boolean;
+  hasBorder?: boolean;
+}
+
+const NavItem = ({
+  icon: Icon,
+  href,
+  label,
+  active = false,
+  hasBorder = true,
+}: Props) => {
   return (
     <a
       href={href}
-      className={`flex items-center rounded-2xl px-6 py-4 font-bold transition-all ${
-        active
-          ? "bg-(--color-green-2) shadow-lg shadow-green-900/20"
-          : "text-(--color-text-green) transition-all hover:underline hover:underline-offset-4 hover:decoration-2"
+      className={`flex rounded transition-all px-2 py-4 gap-2 items-center ${hasBorder ? "border-b border-gray-4 md:border-none" : ""} ${
+        active ? "border-r-4 bg-gray-2 border-gray-10" : ""
       } `}
     >
+      <Icon className="text-xl" />
+
       {label}
     </a>
   );

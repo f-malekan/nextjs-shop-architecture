@@ -21,8 +21,8 @@ const PaymentButton = () => {
   return (
     <>
       {error && <p className="text-red-500">{error}</p>}
-      <BaseButton variant="primary" onClick={onClick}>
-        پرداخت
+      <BaseButton variant="primary" onClick={onClick} className="w-full">
+       ثبت سفارش
       </BaseButton>
     </>
   );

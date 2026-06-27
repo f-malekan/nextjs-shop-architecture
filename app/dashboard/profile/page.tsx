@@ -1,5 +1,5 @@
 import ProfileForm from "@/app/components/dashboard/ProfileForm";
-import { redirect } from "next/navigation"; // اضافه شد
+import { redirect } from "next/navigation";
 import { auth } from "@/app/auth";
 import ChangePasswordForm from "@/app/components/dashboard/ChangePasswordForm";
 import { getUser } from "@/app/actions/dashboardActions/userProfileActions";
@@ -29,10 +29,10 @@ const page = async () => {
     );
   }
   return (
-    <>
-      <ProfileForm user={{ name: user.name ?? "", email: user.email! }} />;
+    <div className="flex flex-column md:flex-row gap-2">
+      <ProfileForm user={{ name: user.name ?? "", email: user.email! }} />
       <ChangePasswordForm />
-    </>
+    </div>
   );
 };
 
