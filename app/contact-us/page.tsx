@@ -23,7 +23,6 @@ const page = () => {
               در تماس باشید.
             </p>
 
-            {/* Info cards */}
             <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
               <ContactMethodCard
                 title="آدرس"

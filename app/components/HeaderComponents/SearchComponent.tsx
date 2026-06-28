@@ -25,7 +25,7 @@ const SearchComponent = () => {
         className=""
         aria-label="Toggle search"
       >
-        <FaSearch className="" size={18}/>
+        <FaSearch className="mt-1" size={18}/>
       </button>
       <SearchBar showSearch={showSearch} setShowSearch={setShowSearch} />
     </div>

@@ -20,7 +20,7 @@ const OrderItemsTable = ({ items, totalAmount }: Props) => {
 
   return (
     <>
-      {/* دکمه کنترل (مشترک) */}
+
       <BaseButton
         className="flex items-center justify-between w-full"
         onClick={() => setIsOpen(!isOpen)}
@@ -32,7 +32,7 @@ const OrderItemsTable = ({ items, totalAmount }: Props) => {
         </h3>
       </BaseButton>
 
-      {/* --- نمای دسکتاپ: به صورت Collapse زیر دکمه --- */}
+
       <div
         className={`hidden md:block overflow-hidden transition-all duration-500 ${isOpen ? "max-h-250 mt-4" : "max-h-0"}`}
       >

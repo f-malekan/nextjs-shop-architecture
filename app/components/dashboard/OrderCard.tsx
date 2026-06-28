@@ -14,7 +14,7 @@ const formatPrice = (value: number) =>
 const OrderCard = ({ order }: { order: OrderType }) => {
   return (
     <div className="rounded-2xl border border-gray-4 bg-white p-5">
-      {/* Summary */}
+
       <div className="flex flex-wrap items-start justify-between gap-4">
         <div className="flex flex-wrap gap-2">
           <span className="rounded-full bg-gray-2 px-3 py-1 text-sm text-gray-10">

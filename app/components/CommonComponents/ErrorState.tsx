@@ -13,24 +13,20 @@ const ErrorState = ({
     <div className="flex items-center justify-center py-16">
       <div className="max-w-md w-full text-center bg-(--color-pink-1)/40 border border-(--color-pink-2) rounded-2xl p-8 shadow-sm">
 
-        {/* icon */}
         <div className="flex justify-center mb-4">
           <div className="w-12 h-12 flex items-center justify-center rounded-full bg-(--color-pink-2) text-(--color-text-pink) text-xl">
             !
           </div>
         </div>
 
-        {/* title */}
         <h2 className="text-lg font-semibold text-(--color-text-pink)">
           {title}
         </h2>
 
-        {/* description */}
         <p className="mt-2 text-sm text-(--color-text-pink)/80 leading-relaxed">
           {description}
         </p>
 
-        {/* retry button */}
         {onRetry && (
           <button
             onClick={onRetry}

@@ -9,7 +9,7 @@ export default function HeroSection() {
   return (
     <section className="w-full bg-white py-6 md:py-10" dir="rtl">
       <div className="pl-0 pr-3 md:pr-5">
-        {/* HERO TOP */}
+
         <div className="grid grid-cols-1 lg:grid-cols-12 items-center gap-6">
           <div className="lg:col-span-4 lg:h-full">
             <div className="relative w-full h-full rounded-3xl overflow-hidden bg-neutral-100">
@@ -36,7 +36,6 @@ export default function HeroSection() {
               داشته باشید.
             </p>
 
-            {/* badges row */}
             <div className="mt-6 flex flex-wrap justify-start gap-2">
               {badges.map((item, index) => (
                 <BaseTag key={index}>{item}</BaseTag>

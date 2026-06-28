@@ -65,12 +65,12 @@ const CustomDress = () => {
         </div>
 
         {/* Button CTA */}
-        <div className="mt-12">
+        {/* <div className="mt-12">
           <button className="bg-[#1A1A1A] text-white px-8 py-3 rounded-xl hover:bg-black transition-all flex items-center gap-2 mx-auto">
             <span>✨</span>
             شخصی‌دوزی
           </button>
-        </div>
+        </div> */}
       </div>
     </section>
   );

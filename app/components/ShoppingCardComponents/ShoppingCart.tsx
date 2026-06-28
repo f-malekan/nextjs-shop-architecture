@@ -15,7 +15,6 @@ const ShoppingCart = () => {
         <h1 className="hidden">سبد خرید</h1>
 
         <div className="grid grid-cols-1 gap-6 lg:grid-cols-12">
-          {/* Cart Items */}
           <div className="lg:col-span-8">
             <div className="overflow-hidden rounded-2xl md:border border-gray-100  md:p-6 md:shadow-sm">
               <div className="overflow-x-auto text-gray-10">
@@ -95,7 +94,6 @@ const ShoppingCart = () => {
             </div>
           </div>
 
-          {/* Summary */}
           <div className="lg:col-span-4">
             <div className="sticky top-6 space-y-4">
               <div className="rounded-3xl md:border border-gray-100 md:p-6 md:shadow-sm text-gray-10 text-sm">

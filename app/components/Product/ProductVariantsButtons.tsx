@@ -31,7 +31,6 @@ const ProductDetails = ({
 
   return (
     <div className="space-y-6">
-      {/* Colors */}
       <div>
         <p className="mb-2 text-sm font-medium">رنگبندی</p>
         <div className="flex gap-2 flex-wrap">
@@ -65,7 +64,6 @@ const ProductDetails = ({
         </div>
       </div>
 
-      {/* Sizes */}
       <div>
         <p className="mb-2 text-sm font-medium">سایزبندی</p>
         <div className="flex gap-2 flex-wrap">
