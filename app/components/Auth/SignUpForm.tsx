@@ -39,6 +39,7 @@ const SignUpForm = () => {
         required
         placeholder="••••••••"
         label="رمز عبور"
+        className="mb-4"
       />
 
       <button

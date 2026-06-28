@@ -6,6 +6,7 @@ import { RiShoppingBag3Line } from "react-icons/ri";
 import ErrorState from "@/app/components/CommonComponents/ErrorState";
 import type { Metadata } from "next";
 import OrderCard from "@/app/components/dashboard/OrderCard";
+import DashboardDefaultContainer from "@/app/components/dashboard/DashboardDefaultContainer";
 
 export const metadata: Metadata = {
   title: "سفارشات من | داشبورد",
@@ -23,11 +24,7 @@ const OrdersPage = async () => {
   if (!orders) return <EmptyState title="شما سفارشی ثبت نکرده اید." />;
 
   return (
-    <div className="space-y-6 md:border md:border-gray-4 p-3 md:p-6 rounded-xl">
-      <header>
-        <h1 className="text-2xl text-gray-11 md:border-b md:border-gray-4">تاریخچه سفارشات</h1>
-      </header>
-
+    <DashboardDefaultContainer title="لیست سفارشات">
       <div className="flex flex-col gap-4">
         {orders.length > 0 ? (
           orders.map((order) => (
@@ -88,7 +85,7 @@ const OrdersPage = async () => {
           />
         )}
       </div>
-    </div>
+    </DashboardDefaultContainer>
   );
 };
 

@@ -42,6 +42,7 @@ const SignInForm = () => {
           label="رمز عبور"
           placeholder="••••••••"
           error={state.errors?.password}
+          className="mb-4"
         />
 
         {state.message && (

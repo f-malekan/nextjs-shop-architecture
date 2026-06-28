@@ -1,10 +1,10 @@
 "use client";
 
-import Link from "next/link";
 import NavItem from "../components/HeaderComponents/NavItem";
 import { usePathname } from "next/navigation";
-import { FaArrowRightLong } from "react-icons/fa6";
 import { CiUser, CiLogout, CiWallet, CiLocationOn } from "react-icons/ci";
+import { signOut } from "next-auth/react";
+
 
 const DashboardLayout = ({ children }: { children: React.ReactNode }) => {
   const pathname = usePathname();
@@ -39,7 +39,7 @@ const DashboardLayout = ({ children }: { children: React.ReactNode }) => {
             active={pathname === "/dashboard/addresses"}
           />
           <NavItem
-            href="/logout"
+            onClick={() => signOut({ callbackUrl: "/" })}
             label="خروج"
             icon={CiLogout}
             hasBorder={false}

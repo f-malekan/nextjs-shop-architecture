@@ -10,6 +10,7 @@ import { updateProfile } from "@/app/actions/dashboardActions/userProfileActions
 import BaseInput from "../BaseComponents/BaseInput";
 import BaseButton from "../BaseComponents/BaseButton";
 import { UserType } from "@/types";
+import DashboardDefaultContainer from "./DashboardDefaultContainer";
 
 const ProfileForm = ({ user }: { user: { email: string; name: string } }) => {
   const {
@@ -45,11 +46,7 @@ const ProfileForm = ({ user }: { user: { email: string; name: string } }) => {
   }
 
   return (
-    <div className="w-full p-6 bg-white rounded-2xl border border-gray-4">
-      <h2 className="text-xl text-gray-10 mb-6 border-b border-gray-4 pb-4">
-        اطلاعات حساب کاربری
-      </h2>
-
+    <DashboardDefaultContainer title=" اطلاعات حساب کاربری">
       <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
           <BaseInput
@@ -78,7 +75,7 @@ const ProfileForm = ({ user }: { user: { email: string; name: string } }) => {
           </div>
         </div>
       </form>
-    </div>
+    </DashboardDefaultContainer>
   );
 };
 

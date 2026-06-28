@@ -5,12 +5,13 @@ interface Props {
   isOpen: boolean;
   onClose?: () => void;
   children: React.ReactNode;
+  className?: string;
 }
 
-const BaseButtomSheet = ({ isOpen, onClose, children }: Props) => {
+const BaseBottomSheet = ({ isOpen, onClose, children, className }: Props) => {
   return (
     <div
-      className={`fixed inset-0 z-51 md:hidden transition-opacity duration-300 
+      className={`${className} fixed inset-0 z-51 md:hidden transition-opacity duration-300 
  ${isOpen ? "visible opacity-100" : "invisible opacity-0"}`}
     >
       <div className="absolute inset-0 bg-black/40" onClick={onClose} />
@@ -30,4 +31,4 @@ const BaseButtomSheet = ({ isOpen, onClose, children }: Props) => {
   );
 };
 
-export default BaseButtomSheet;
+export default BaseBottomSheet;

@@ -28,7 +28,7 @@ const BaseInput = ({
           outline-none transition
          focus:border-gray-10
           ${className}
-        ${disabled ? ' bg-gray-2' : ""}}
+        ${disabled ? ' bg-black' : ""}}
         `}
         disabled = {disabled}
       />
