@@ -1,4 +1,4 @@
-# 🛒 Pro-Level E-commerce Architecture
+# 🛒 Mid-Level E-commerce Architecture
 
 A high-performance, scalable e-commerce foundation built with **Next.js 16 (App Router)**. This project demonstrates a production-ready architecture focusing on server-side efficiency, advanced caching strategies, and SEO optimization.
 
