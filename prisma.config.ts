@@ -10,6 +10,7 @@ export default defineConfig({
     seed: `tsx prisma/seed.ts`,
   },
   datasource: {
-    url: "mysql://root:11471347Fa%40@localhost:3306/nextapp",
+    // url: "mysql://root:11471347Fa%40@localhost:3306/nextapp",
+    url: "mysql://2MWctRK3DnwzTpk.root:gpPXYNzHCEYYbB5H@gateway01.eu-central-1.prod.aws.tidbcloud.com:4000/sys?sslaccept=strict"
   },
 });
