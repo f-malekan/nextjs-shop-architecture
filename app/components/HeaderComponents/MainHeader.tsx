@@ -15,7 +15,7 @@ const MainHeader = async () => {
 
   return (
     <header className="top-0 z-50 mb-3 md:mb-10 ">
-      <div className="max-w-360 mx-auto flex p-4 px-6 md:px-12 lg:px-20 justify-between items-center">
+      <div className="max-w-360 mx-auto flex p-3 md:px-12 lg:px-20 justify-between items-center">
         <Link href="/" className="lg:flex-1">
           <Image
             src={"/images/mainLogo.png"}

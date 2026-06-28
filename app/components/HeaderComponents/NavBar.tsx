@@ -4,14 +4,22 @@ import NavBarCategory from "./NavBarCategory";
 import { useState, useEffect } from "react";
 import { CategoryType } from "@/types";
 import { IoMenu, IoClose } from "react-icons/io5";
+import { usePathname } from "next/navigation";
 
 interface Props {
   categories: CategoryType[];
-  className?: string
+  className?: string;
 }
 
 const NavBar = ({ categories, className }: Props) => {
   const [open, setOpen] = useState(false);
+  const pathname = usePathname();
+
+  useEffect(() => {
+    setTimeout(() => {
+      setOpen(false);
+    }, 0);
+  }, [pathname]);
 
   useEffect(() => {
     document.body.style.overflow = open ? "hidden" : "";

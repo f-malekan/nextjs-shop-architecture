@@ -1,7 +1,7 @@
 "use client";
 import { login } from "../../actions/loginActions";
 import BaseButton from "../BaseComponents/BaseButton";
-import { useActionState } from "react";
+import { useActionState, useEffect } from "react";
 import BaseInput from "../BaseComponents/BaseInput";
 import Image from "next/image";
 import { useAuthModalStore } from "@/store/useAuthModalStore";
@@ -12,7 +12,13 @@ const SignInForm = () => {
     errors: {},
   });
 
-  const { setView } = useAuthModalStore();
+  const { setView,closeModal } = useAuthModalStore();
+
+  useEffect(() => {
+    if (!state?.message && Object.keys(state?.errors || {}).length === 0) {
+      closeModal();
+    }
+  }, [state, closeModal]);
 
   return (
     <>
