@@ -4,13 +4,12 @@ const globalForPrisma = global as unknown as {
   prisma?: PrismaClient;
 };
 const adapter = new PrismaMariaDb({
-  host: "localhost",
-  port: 3306,
-  user: "root",
-  password: "11471347Fa@",
-  database: "nextapp",
-  allowPublicKeyRetrieval: true,
-  //   database: process.env.DATABASE_NAME,
+  host: "gateway01.eu-central-1.prod.aws.tidbcloud.com",
+  port: 4000,
+  user: "2MWctRK3DnwzTpk.root",
+  password: "gpPXYNzHCEYYbB5H",
+  database: "test",
+  ssl: {},
 });
 const prisma =
   globalForPrisma.prisma ||
