@@ -12,7 +12,7 @@ const SignInButtopn = () => {
   const { openModal } = useAuthModalStore();
 
   if (!user) {
-    return <BaseButton onClick={openModal}>ورود و ثبت نام</BaseButton>;
+    return <BaseButton onClick={openModal} variant="white">ورود و ثبت نام</BaseButton>;
   }
 
   return (

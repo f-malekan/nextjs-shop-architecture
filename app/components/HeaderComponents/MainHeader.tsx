@@ -16,7 +16,7 @@ const MainHeader = async () => {
   return (
     <header className="top-0 z-50 mb-3 md:mb-10 ">
       <div className="max-w-360 mx-auto flex p-4 px-6 md:px-12 lg:px-20 justify-between items-center">
-        <Link href="/" className="shrink-0 lg:order-1">
+        <Link href="/" className="lg:flex-1">
           <Image
             src={"/images/mainLogo.png"}
             alt="logo"
@@ -27,18 +27,18 @@ const MainHeader = async () => {
           />
         </Link>
 
-        <div className="flex gap-3 md:gap-6 items-center lg:order-3">
-          <div className="hidden sm:block">
-            <SearchComponent />
-          </div>
+        <div className="flex md:gap-6 items-center lg:justify-between lg:flex-2">
+          <div className="flex lg:order-1 items-center lg:gap-3">
+            <div className="hidden sm:block">
+              <SearchComponent />
+            </div>
 
-          <div className="flex items-center gap-2 md:gap-5">
             {session?.user && <CartButton />}
+
             <SignInButton />
           </div>
+          <NavBar categories={data} className="lg:order-0" />
         </div>
-
-        <NavBar categories={data} className="lg:order-2" />
       </div>
     </header>
   );
