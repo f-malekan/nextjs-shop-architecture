@@ -19,7 +19,7 @@ const ProductCard = ({ product, className = "", ...props }: Props) => {
         {...props}
         className={[
           // card
-          "w-full relative overflow-hidden rounded-2xl",
+          "w-full relative overflow-hidden rounded-2xl aspect-5/7",
           "shadow-sm transition-all duration-300 hover:-translate-y-0.5 hover:shadow-lg hover:shadow-gray-200/60",
           "focus-within:ring-2 focus-within:ring-indigo-500/30",
           className,
@@ -30,7 +30,7 @@ const ProductCard = ({ product, className = "", ...props }: Props) => {
           width={600}
           height={600}
           alt={product.name}
-          className="h-full w-full object-contain transition-transform duration-300 group-hover:scale-[1.03]"
+          className="h-full w-full object-cover transition-transform duration-300 group-hover:scale-[1.03]"
           sizes="(max-width: 768px) 50vw, (max-width: 1200px) 33vw, 25vw"
         />
       </div>
