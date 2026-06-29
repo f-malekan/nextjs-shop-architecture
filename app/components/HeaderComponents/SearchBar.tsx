@@ -1,5 +1,5 @@
 "use client";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import { useDebouncedCallback } from "use-debounce";
 import BaseInput from "../BaseComponents/BaseInput";
@@ -7,6 +7,9 @@ import { searchProducts } from "@/app/actions/productActions";
 import { Product } from "@/types";
 import ProductCard from "../Product/ProductCard";
 import CommonSectionHeader from "../CommonComponents/CommonSectionHeader";
+import EmptyState from "../CommonComponents/EmptyState";
+import { FaSearch } from "react-icons/fa";
+import { usePathname } from "next/navigation";
 
 interface Props {
   showSearch: boolean;
@@ -31,10 +34,11 @@ const SearchBar = ({ showSearch, setShowSearch }: Props) => {
     }
   }, 300);
 
-  const handleSeeAll = () => {
-    router.push(`/products?search=${search}`);
+  const pathName = usePathname();
+
+  useEffect(() => {
     setShowSearch(false);
-  };
+  }, [pathName, setShowSearch]);
 
   return (
     <div
@@ -59,14 +63,25 @@ const SearchBar = ({ showSearch, setShowSearch }: Props) => {
               viewAllLabel
             />
             <div className="container mx-auto mt-10">
-              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4  gap-6">
-                {products?.map((product) => (
-                  <ProductCard
-                    key={product.id}
-                    product={{ ...product, price: Number(product.price) }}
-                  />
-                ))}
-              </div>
+              {!!products && products.length > 0 ? (
+                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4  gap-6">
+                  {products?.map((product) => (
+                    <ProductCard
+                      key={product.id}
+                      product={{ ...product, price: Number(product.price) }}
+                    />
+                  ))}
+                </div>
+              ) : (
+                <EmptyState
+                  title="نتیجه‌ای یافت نشد"
+                  description={`متأسفانه برای این عبارت محصولی پیدا نکردیم. لطفاً کلمات کلیدی دیگری را امتحان کنید.`}
+                  icon={<FaSearch className="w-8 h-8" />}
+                  actionLabel="مشاهده همه محصولات"
+                  actionHref="/products"
+                  className="mt-10 mb-5"
+                />
+              )}
             </div>
           </section>
         )}

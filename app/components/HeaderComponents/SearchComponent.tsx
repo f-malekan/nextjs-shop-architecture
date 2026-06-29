@@ -22,7 +22,7 @@ const SearchComponent = () => {
       <button
         type="button"
         onClick={() => setShowSearch((s) => !s)}
-        className=""
+        className="cursor-pointer"
         aria-label="Toggle search"
       >
         <FaSearch className="mt-1" size={18}/>

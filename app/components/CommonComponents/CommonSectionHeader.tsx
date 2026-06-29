@@ -23,7 +23,7 @@ const CommonSectionHeader = ({
         {subtitle && <p>{subtitle}</p>}
       </div>
       {viewAllLabel && href ? (
-        <Link href={href}>
+        <Link href={href} className="flex gap-2 items-center">
           <span>مشاهده همه</span>
 
           <FiArrowLeft className="transition-transform group-hover:-translate-x-1" />

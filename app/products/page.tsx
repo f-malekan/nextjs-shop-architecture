@@ -33,7 +33,7 @@ const ProductsPage = async ({ searchParams }: Props) => {
 
   if (!success) return <ErrorState title={message} />;
 
-  if (!products) {
+  if (!products || products.length === 0) {
     return (
       <div className="container mx-auto mt-3">
         <EmptyState
@@ -46,6 +46,8 @@ const ProductsPage = async ({ searchParams }: Props) => {
           }
           actionLabel="بازگشت به صفحه اصلی"
           actionHref="/"
+          className="mb-1
+          "
         />
       </div>
     );
