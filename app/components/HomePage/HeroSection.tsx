@@ -14,7 +14,7 @@ export default function HeroSection() {
           <div className="lg:col-span-4 lg:h-full">
             <div className="relative w-full h-full rounded-3xl overflow-hidden bg-neutral-100">
               <Image
-                sizes="(max-width: 768px) 100vw, 300px"
+                sizes="(max-width: 768px) 0px, 400px"
                 src={"/images/dress-bb.webp"}
                 alt="dress"
                 fill
@@ -43,7 +43,7 @@ export default function HeroSection() {
             </div>
 
             <div className="flex items-center gap-2 my-5">
-              <BaseLink href="/">
+              <BaseLink href="/products">
                 مشاهده کالکشن ها
               </BaseLink>
               <svg

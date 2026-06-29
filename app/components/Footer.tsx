@@ -3,7 +3,7 @@ import Image from "next/image";
 
 const Footer = () => {
   return (
-    <footer className="bg-black text-white">
+    <footer className="bg-black text-white min-h-[364px]">
       <div className="max-w-3xl mx-auto px-6 py-12 grid grid-col-2 lg:grid-cols-3 gap-15">
         <div>
           <h2 className="text-2xl font-semibold tracking-wide mb-4">OTANA</h2>

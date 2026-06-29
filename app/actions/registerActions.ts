@@ -2,6 +2,7 @@
 
 import prisma from "@/lib/prisma";
 import bcrypt from "bcryptjs";
+import { signIn } from "../auth";
 import { redirect } from "next/navigation";
 
 export const register = async (formData: FormData) => {
@@ -30,7 +31,19 @@ export const register = async (formData: FormData) => {
       password: hashedPassword,
     },
   });
-  redirect("/");
+  try {
+    await signIn("credentials", {
+      email,
+      password,
+    });
+    redirect("/");
+  } catch (error) {
+    console.error(error);
 
+    return {
+      success: false,
+      message: "ثبت‌نام انجام شد اما ورود خودکار ناموفق بود.",
+    };
+  }
   return { success: "ثبت‌نام با موفقیت انجام شد!" };
 };

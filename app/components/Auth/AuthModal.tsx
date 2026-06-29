@@ -17,7 +17,11 @@ const AuthModal = () => {
   };
   return (
     <>
-      <BaseModal isOpen={isOpen} onClose={closeModal} className="hidden md:flex">
+      <BaseModal
+        isOpen={isOpen}
+        onClose={closeModal}
+        className="hidden md:flex"
+      >
         <div className="flex grid-col-2 rounded-2xl">
           <div className="w-[50%] min-h-125 h-full relative">
             <Image
@@ -25,12 +29,17 @@ const AuthModal = () => {
               className="object-cover"
               fill
               alt="login"
+              sizes="(max-width: 767px) 0px, 20vw"
             />
           </div>
           <div className="w-[50%] p-7 flex flex-col">{renderForm()}</div>
         </div>
       </BaseModal>
-      <BaseBottomSheet isOpen={isOpen} onClose={closeModal} className="md:hidden">
+      <BaseBottomSheet
+        isOpen={isOpen}
+        onClose={closeModal}
+        className="md:hidden"
+      >
         <div className="flex flex-col">{renderForm()}</div>
       </BaseBottomSheet>
     </>

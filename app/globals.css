@@ -70,23 +70,10 @@
 }
 
 
-/* Webfont: Yekan */
-@font-face {
-  font-family: 'Yekan';
-  src:
-    url('/fonts/Yekan.woff2') format('woff2');
-
-
-  font-weight: normal;
-  font-style: normal;
-  text-rendering: optimizeLegibility;
-  font-display: auto;
-}
-
 
 body {
   color: var(--foreground);
-  font-family: 'Yekan', 'serif', "system-ui";
+  font-family: var(--font-yekan), system-ui, sans-serif;
   background-size: cover;
   background-position: center;
   background-attachment: fixed;
