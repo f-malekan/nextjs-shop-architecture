@@ -22,10 +22,10 @@ const SearchComponent = () => {
       <button
         type="button"
         onClick={() => setShowSearch((s) => !s)}
-        className="cursor-pointer"
+        className="cursor-pointer w-8 h-8"
         aria-label="Toggle search"
       >
-        <FaSearch className="mt-1" size={18}/>
+        <FaSearch className="mt-1" size={20}/>
       </button>
       <SearchBar showSearch={showSearch} setShowSearch={setShowSearch} />
     </div>

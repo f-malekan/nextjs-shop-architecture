@@ -28,8 +28,8 @@ const MainHeader = async () => {
         </Link>
 
         <div className="flex md:gap-6 items-center lg:justify-between lg:flex-2">
-          <div className="flex lg:order-1 items-center lg:gap-3">
-            <div className="hidden sm:block">
+          <div className="flex lg:order-1 items-center sm:gap-2 lg:gap-3">
+            <div className="">
               <SearchComponent />
             </div>
 

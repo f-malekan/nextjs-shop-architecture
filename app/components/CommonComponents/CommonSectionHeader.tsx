@@ -18,7 +18,7 @@ const CommonSectionHeader = ({
   return (
     <div className="w-full flex items-end justify-between gap-4 border-b border-gray-6 text-gray-10">
       <div>
-        <h2 className="mb-2">{title}</h2>
+        <h2 className="text-2xl font-bold my-2">{title}</h2>
 
         {subtitle && <p>{subtitle}</p>}
       </div>

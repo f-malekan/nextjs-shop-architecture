@@ -40,7 +40,7 @@ const UserMenu = ({ name }: UserMenuProps) => {
         aria-expanded={open}
         aria-haspopup="true"
         className={`
-          h-10 w-10 rounded-full flex items-center justify-center
+          h-8 w-8 rounded-full flex items-center justify-center
           transition-all duration-200 cursor-pointer
           hover:bg-gray-4
         

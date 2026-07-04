@@ -94,7 +94,7 @@ const ShoppingCart = () => {
             </div>
           </div>
 
-          <div className="lg:col-span-4">
+          {!!(items.length) && <div className="lg:col-span-4">
             <div className="sticky top-6 space-y-4">
               <div className="rounded-3xl md:border border-gray-100 md:p-6 md:shadow-sm text-gray-10 text-sm">
                 <p className="py-3 mb-3 border-b border-gray-4">
@@ -129,7 +129,7 @@ const ShoppingCart = () => {
                 <PaymentButton />
               </div>
             </div>
-          </div>
+          </div>}
         </div>
       </div>
     </div>

@@ -1,6 +1,5 @@
 "use client";
 import { useEffect, useState } from "react";
-import { useRouter } from "next/navigation";
 import { useDebouncedCallback } from "use-debounce";
 import BaseInput from "../BaseComponents/BaseInput";
 import { searchProducts } from "@/app/actions/productActions";
@@ -18,7 +17,6 @@ interface Props {
 
 const SearchBar = ({ showSearch, setShowSearch }: Props) => {
   const [search, setSearch] = useState("");
-  const router = useRouter();
   const [products, setProducts] = useState<Product[]>();
 
   const handleSearch = useDebouncedCallback(async (value: string) => {
@@ -43,11 +41,11 @@ const SearchBar = ({ showSearch, setShowSearch }: Props) => {
   return (
     <div
       className={[
-        "fixed flex flex-col right-0 top-25 overflow-hidden transition-all duration-300 ease-out z-50",
+        "fixed flex flex-col right-0 top-21 overflow-hidden transition-all duration-300 ease-out z-50",
         showSearch ? "h-screen w-screen opacity-100" : "h-0 opacity-0",
       ].join(" ")}
     >
-      <div className="bg-white px-40">
+      <div className="bg-white px-5 lg:px-30 max-h-150 overflow-hidden">
         <BaseInput
           type="text"
           placeholder="جستجو کنید.."
@@ -60,11 +58,11 @@ const SearchBar = ({ showSearch, setShowSearch }: Props) => {
             <CommonSectionHeader
               title="نتیجه جست و جو"
               href={`/products?search=${search}`}
-              viewAllLabel
+              viewAllLabel={!!(!!products && products.length > 0)}
             />
             <div className="container mx-auto mt-10">
               {!!products && products.length > 0 ? (
-                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4  gap-6">
+                <div className="grid grid-cols-2 sm:grid-cols-4 gap-6">
                   {products?.map((product) => (
                     <ProductCard
                       key={product.id}
