@@ -7,11 +7,10 @@ import { IoMenu, IoClose } from "react-icons/io5";
 import { usePathname } from "next/navigation";
 
 interface Props {
-  categories: CategoryType[];
   className?: string;
 }
 
-const NavBar = ({ categories, className }: Props) => {
+const NavBar = ({ className }: Props) => {
   const [open, setOpen] = useState(false);
   const pathname = usePathname();
 
@@ -47,7 +46,7 @@ const NavBar = ({ categories, className }: Props) => {
       >
         <Link href="/">خانه</Link>
         <Link href="/products">فروشگاه</Link>
-        <NavBarCategory categories={categories} />
+        <NavBarCategory />
 
         <Link href="/contact-us" className="text-nowrap">
           تماس با ما

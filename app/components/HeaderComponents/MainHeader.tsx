@@ -8,9 +8,7 @@ import { getCategories } from "@/app/actions/categoryActions";
 import ErrorState from "../CommonComponents/ErrorState";
 
 const MainHeader = async () => {
-  const { data, success } = await getCategories();
-  if (!success || !data) return <ErrorState />;
-
+ 
   return (
     <header className="top-0 z-50 mb-3 md:mb-10 ">
       <div className="max-w-360 mx-auto flex p-3 md:px-12 lg:px-20 justify-between items-center">
@@ -35,7 +33,7 @@ const MainHeader = async () => {
 
             <SignInButton />
           </div>
-          <NavBar categories={data} className="md:order-0" />
+          <NavBar className="md:order-0" />
         </div>
       </div>
     </header>
