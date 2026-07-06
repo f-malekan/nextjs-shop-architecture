@@ -49,7 +49,9 @@ const NavBar = ({ categories, className }: Props) => {
         <Link href="/products">فروشگاه</Link>
         <NavBarCategory categories={categories} />
 
-        <Link href="/contact-us" className="text-nowrap">تماس با ما</Link>
+        <Link href="/contact-us" className="text-nowrap">
+          تماس با ما
+        </Link>
       </div>
     </nav>
   );

@@ -1,6 +1,6 @@
 "use client";
 import { MdKeyboardArrowDown } from "react-icons/md";
-import { useState, useRef, useEffect } from "react";
+import { useState, useRef, useEffect, Suspense } from "react";
 import { CategoryType } from "@/types";
 import Link from "next/link";
 import { usePathname, useSearchParams } from "next/navigation";
@@ -38,7 +38,8 @@ const NavBarCategory = ({ categories }: { categories: CategoryType[] }) => {
         <MdKeyboardArrowDown />
       </button>
 
-      {showCategories && (
+<Suspense>
+   {showCategories && (
         <div className="lg:absolute top-10 right-0 z-10 bg-white lg:shadow-2xl shadow-black w-max p-3 rounded-2xl">
           <ul className="grid grid-cols-2 gap-2">
             {categories.map((item) => (
@@ -55,6 +56,8 @@ const NavBarCategory = ({ categories }: { categories: CategoryType[] }) => {
           </ul>
         </div>
       )}
+</Suspense>
+     
     </div>
   );
 };
