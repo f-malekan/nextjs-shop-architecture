@@ -5,15 +5,20 @@ import Link from "next/link";
 interface Props extends React.HTMLAttributes<HTMLDivElement> {
   product: Product;
   className?: string;
+  priority?: boolean;
 }
 
-const ProductCard = ({ product, className = "", ...props }: Props) => {
+const ProductCard = ({
+  product,
+  className = "",
+  priority = false,
+  ...props
+}: Props) => {
   const colors = Array.from(
     new Map(product.variants?.map((v) => [v.colorId, v.color])).values(),
   );
 
   return (
-    <Link href={`/products/${product.id}`}>
     <div>
       <div
         {...props}
@@ -32,6 +37,7 @@ const ProductCard = ({ product, className = "", ...props }: Props) => {
           alt={product.name}
           className="h-full w-full object-cover transition-transform duration-300 group-hover:scale-[1.03]"
           sizes="(max-width: 768px) 50vw, (max-width: 1200px) 33vw, 25vw"
+          priority={priority}
         />
       </div>
       <div className="flex flex-col md:flex-row p-5 justify-between gap-2">
@@ -39,13 +45,14 @@ const ProductCard = ({ product, className = "", ...props }: Props) => {
           <p className="text-sm">{product.name}</p>
 
           <p className="text-sm">
-            {product.price.toLocaleString()} <span className="text-gray-10 text-xs">تومان</span>
+            {product.price.toLocaleString()}{" "}
+            <span className="text-gray-10 text-xs">تومان</span>
           </p>
         </div>
         <div className="flex gap-2">
           {colors.map((color) => (
             <div
-            key={color?.id}
+              key={color?.id}
               style={{ backgroundColor: color?.hexCode }}
               className="w-3 h-3 md:h-5 md:w-5 rounded"
             />
@@ -53,7 +60,6 @@ const ProductCard = ({ product, className = "", ...props }: Props) => {
         </div>
       </div>
     </div>
-    </Link>
   );
 };
 

@@ -17,7 +17,6 @@ interface Props {
 }
 
 const ProductsPage = async ({ searchParams }: Props) => {
-
   const { search, category, page: pageParam } = await searchParams;
   const page = Number(pageParam) || 1;
 
@@ -56,9 +55,9 @@ const ProductsPage = async ({ searchParams }: Props) => {
     <>
       {" "}
       <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 xl:grid-cols-5 gap-3 mt-3 container mx-auto">
-        {products.map((product) => (
+        {products.map((product, index) => (
           <Link key={product.id} href={`/products/${product.id}`}>
-            <ProductCard className="" product={product} />
+            <ProductCard className="" product={product} priority={index < 4} />
           </Link>
         ))}
       </div>
