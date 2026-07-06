@@ -6,7 +6,7 @@ import MainHeader from "./components/HeaderComponents/MainHeader";
 import AuthProvider from "./auth/Provider";
 import Footer from "./components/Footer";
 import AuthModal from "./components/Auth/AuthModal";
-import localFont from "next/font/local"
+import localFont from "next/font/local";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -22,7 +22,7 @@ const yekan = localFont({
   src: "../public/fonts/Yekan.woff2",
   variable: "--font-yekan",
   display: "swap",
-})
+});
 
 export const metadata: Metadata = {
   title: {
@@ -40,10 +40,13 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-className={`${geistSans.variable} ${geistMono.variable} ${yekan.variable} h-full antialiased`}    >
+      className={`${geistSans.variable} ${geistMono.variable} ${yekan.variable} h-full antialiased`}
+    >
       <body>
         <AuthProvider>
-          <MainHeader />
+          <Suspense>
+            <MainHeader />
+          </Suspense>
           {/* <Suspense fallback={<p>loading...</p>}> */}
           {children}
           {/* </Suspense> */}

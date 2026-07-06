@@ -3,7 +3,7 @@ import Image from "next/image";
 
 const Footer = () => {
   return (
-    <footer className="bg-black text-white min-h-[364px]">
+    <footer className="bg-black text-white min-h-91">
       <div className="max-w-3xl mx-auto px-6 py-12 grid grid-col-2 lg:grid-cols-3 gap-15">
         <div>
           <h2 className="text-2xl font-semibold tracking-wide mb-4">OTANA</h2>
@@ -41,7 +41,7 @@ const Footer = () => {
       </div>
 
       <div className="border-t border-white/20 text-center py-6 text-sm text-gray-200">
-        © {new Date().getFullYear()} OTANA. All rights reserved.
+        © 2026 OTANA. All rights reserved.
       </div>
     </footer>
   );

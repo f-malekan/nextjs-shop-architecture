@@ -1,4 +1,3 @@
-import { auth } from "../../auth";
 import CartButton from "./ShoppingCartButton";
 import NavBar from "./NavBar";
 import SignInButton from "../Auth/SignInButton";
@@ -9,7 +8,6 @@ import { getCategories } from "@/app/actions/categoryActions";
 import ErrorState from "../CommonComponents/ErrorState";
 
 const MainHeader = async () => {
-  const session = await auth();
   const { data, success } = await getCategories();
   if (!success || !data) return <ErrorState />;
 
@@ -33,7 +31,7 @@ const MainHeader = async () => {
               <SearchComponent />
             </div>
 
-            {session?.user && <CartButton />}
+            <CartButton />
 
             <SignInButton />
           </div>
