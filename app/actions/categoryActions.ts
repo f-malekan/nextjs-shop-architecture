@@ -1,13 +1,9 @@
-"use cache";
-import { cacheLife } from "next/cache";
-
 import prisma from "@/lib/prisma";
 import { CategoryType, ActionResultType } from "@/types";
 
 export const getCategories = async (): Promise<
   ActionResultType<CategoryType[]>
 > => {
-  cacheLife('days')
   try {
     const categories = await prisma.category.findMany();
 

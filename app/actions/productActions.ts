@@ -1,7 +1,6 @@
 "use server";
 import prisma from "@/lib/prisma";
 import type { ActionResultType, Product } from "@/types";
-import { cacheLife } from "next/cache";
 import { cache } from "react";
 
 export const getAllProducts = async (
@@ -55,8 +54,6 @@ export const getAllProducts = async (
 export const getLatestProducts = async (): Promise<
   ActionResultType<Product[]>
 > => {
-  "use cache";
-  cacheLife("days");
   try {
     const products = await prisma.product.findMany({
       take: 10,

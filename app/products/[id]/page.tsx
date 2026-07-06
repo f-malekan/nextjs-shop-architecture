@@ -1,5 +1,3 @@
-'use cache'
-import { cacheLife } from "next/cache";
 import Image from "next/image";
 import { getProductWithVariants } from "@/app/actions/productActions";
 import ProductClientComponents from "@/app/components/Product/ProductClientComponents";
@@ -10,7 +8,6 @@ interface Props {
 }
 
 export async function generateMetadata({ params }: Props) {
-  cacheLife('days')
   const productId = (await params).id;
   const { data: product, success } = await getProductWithVariants(productId);
 
