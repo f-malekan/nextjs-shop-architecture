@@ -33,7 +33,8 @@ const NavBarCategory = ({ categories }: { categories: CategoryType[] }) => {
         className="flex cursor-pointer items-center"
         onClick={() => setShowCategories(!showCategories)}
       >
-        دسته بندی
+        <span className="text-nowrap">دسته بندی</span>
+        
         <MdKeyboardArrowDown />
       </button>
 

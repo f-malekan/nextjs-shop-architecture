@@ -34,12 +34,12 @@ const ProductCard = ({ product, className = "", ...props }: Props) => {
           sizes="(max-width: 768px) 50vw, (max-width: 1200px) 33vw, 25vw"
         />
       </div>
-      <div className="flex flex-col md:flex-row p-5 justify-between">
+      <div className="flex flex-col md:flex-row p-5 justify-between gap-2">
         <div>
-          <p>{product.name}</p>
+          <p className="text-sm">{product.name}</p>
 
-          <p>
-            {product.price.toLocaleString()} <span>تومان</span>
+          <p className="text-sm">
+            {product.price.toLocaleString()} <span className="text-gray-10 text-xs">تومان</span>
           </p>
         </div>
         <div className="flex gap-2">

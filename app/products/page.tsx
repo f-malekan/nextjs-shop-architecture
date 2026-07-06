@@ -1,5 +1,3 @@
-export const revalidate = 60;
-
 import ProductCard from "../components/Product/ProductCard";
 import EmptyState from "../components/CommonComponents/EmptyState";
 import Link from "next/link";
@@ -19,16 +17,15 @@ interface Props {
 }
 
 const ProductsPage = async ({ searchParams }: Props) => {
-  const { search, category, page :pageParam } = await searchParams;
-    const page = Number(pageParam) || 1;
-    
 
+  const { search, category, page: pageParam } = await searchParams;
+  const page = Number(pageParam) || 1;
 
   const {
     data: products,
     success,
     message,
-    totalCount
+    totalCount,
   } = await getAllProducts(category, search, page);
 
   if (!success) return <ErrorState title={message} />;
@@ -53,8 +50,7 @@ const ProductsPage = async ({ searchParams }: Props) => {
     );
   }
 
-  const totalPages = Math.ceil(totalCount / 20)
-
+  const totalPages = Math.ceil(totalCount / 20);
 
   return (
     <>
@@ -66,8 +62,12 @@ const ProductsPage = async ({ searchParams }: Props) => {
           </Link>
         ))}
       </div>
-       {totalPages > 1 && (
-        <BasePagination currentPage={page} totalPages={totalPages} className="my-15"/>
+      {totalPages > 1 && (
+        <BasePagination
+          currentPage={page}
+          totalPages={totalPages}
+          className="my-15"
+        />
       )}
     </>
   );

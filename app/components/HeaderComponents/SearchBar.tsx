@@ -45,7 +45,7 @@ const SearchBar = ({ showSearch, setShowSearch }: Props) => {
         showSearch ? "h-screen w-screen opacity-100" : "h-0 opacity-0",
       ].join(" ")}
     >
-      <div className="bg-white px-5 lg:px-30 max-h-150 overflow-hidden">
+      <div className="bg-white px-5 lg:px-30 overflow-hidden">
         <BaseInput
           type="text"
           placeholder="جستجو کنید.."

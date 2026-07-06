@@ -1,5 +1,5 @@
-export const revalidate = 60;
-
+"use cache";
+import { cacheLife } from "next/cache";
 import LatestProducts from "./components/HomePage/LatestProducts";
 import HeroSection from "./components/HomePage/HeroSection";
 import CategoryGrid from "./components/HeaderComponents/CategoryGrid";
@@ -9,6 +9,7 @@ import CustomDress from "./components/CustomDress";
 //loading state on button and every where/ pagination/ role base: admin, / separate constants/ schema ha hame y ja/ responsive
 
 const Home = async () => {
+  cacheLife("days");
   return (
     <main>
       <HeroSection />

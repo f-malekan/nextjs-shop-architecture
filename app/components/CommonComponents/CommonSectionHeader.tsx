@@ -1,5 +1,4 @@
 import { FiArrowLeft } from "react-icons/fi";
-import BaseButton from "../BaseComponents/BaseButton";
 import Link from "next/link";
 
 type SectionHeaderProps = {

@@ -16,7 +16,7 @@ const MainHeader = async () => {
   return (
     <header className="top-0 z-50 mb-3 md:mb-10 ">
       <div className="max-w-360 mx-auto flex p-3 md:px-12 lg:px-20 justify-between items-center">
-        <Link href="/" className="lg:flex-1">
+        <Link href="/" className="md:flex-1">
           <Image
             src={"/images/mainLogo.png"}
             alt="logo"
@@ -27,8 +27,8 @@ const MainHeader = async () => {
           />
         </Link>
 
-        <div className="flex md:gap-6 items-center lg:justify-between lg:flex-2">
-          <div className="flex lg:order-1 items-center sm:gap-2 lg:gap-3">
+        <div className="flex md:gap-6 items-center md:justify-between md:flex-2">
+          <div className="flex md:order-1 items-center sm:gap-2 lg:gap-3">
             <div className="">
               <SearchComponent />
             </div>
@@ -37,7 +37,7 @@ const MainHeader = async () => {
 
             <SignInButton />
           </div>
-          <NavBar categories={data} className="lg:order-0" />
+          <NavBar categories={data} className="md:order-0" />
         </div>
       </div>
     </header>
