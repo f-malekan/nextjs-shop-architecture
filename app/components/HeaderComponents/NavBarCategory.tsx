@@ -63,7 +63,7 @@ const NavBarCategory = () => {
       </button>
 
       {showCategories && (
-        <div className="lg:absolute top-10 right-0 z-10 bg-white lg:shadow-2xl shadow-black w-max p-3 rounded-2xl">
+        <div className="md:absolute top-10 right-0 z-10 bg-white md:shadow-2xl shadow-black w-max p-3 rounded-2xl">
           {isLoading ? (
             <div className="p-4">در حال بارگذاری...</div>
           ) : (
