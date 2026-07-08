@@ -1,6 +1,5 @@
 import type { Product } from "@/types";
 import Image from "next/image";
-import Link from "next/link";
 
 interface Props extends React.HTMLAttributes<HTMLDivElement> {
   product: Product;

@@ -102,10 +102,15 @@ export interface UserType {
   addresses?: AddressType[];
 }
 
-export type ActionResultType<T extends object = Record<string, string[]>> = {
+
+export type ActionResultType<
+  TData = never,
+  TErrors = Record<string, string[]>
+> = {
   success: boolean;
-  message: string | null;
-  errors?: T;
+  message?: string | null;
+  data?: TData;
+  errors?: TErrors;
 };
 
 export enum OrderStatus {

@@ -35,6 +35,7 @@ const NavBarCategory = () => {
   };
 
   useEffect(() => {
+    // eslint-disable-next-line react-hooks/set-state-in-effect
     setShowCategories(false);
   }, [pathName, searchParams]);
 

@@ -1,6 +1,5 @@
 import { getUserOrders } from "@/app/actions/dashboardActions/userOrderActions";
-import Image from "next/image";
-import OrderStatusBadge from "@/app/components/dashboard/OrderStatusBadge";
+
 import EmptyState from "@/app/components/CommonComponents/EmptyState";
 import { RiShoppingBag3Line } from "react-icons/ri";
 import ErrorState from "@/app/components/CommonComponents/ErrorState";
@@ -19,7 +18,7 @@ export const metadata: Metadata = {
 const OrdersPage = async () => {
   const { data: orders, success, message } = await getUserOrders();
 
-  if (!success) return <ErrorState title={message} />;
+  if (!success) return <ErrorState title={message ?? undefined} />;
 
   if (!orders) return <EmptyState title="شما سفارشی ثبت نکرده اید." />;
 

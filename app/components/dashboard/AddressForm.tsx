@@ -11,7 +11,7 @@ import BaseButton from "../BaseComponents/BaseButton";
 import { saveAddress } from "@/app/actions/dashboardActions/userAddressesActions";
 import { iranCities } from "@/constants";
 import BaseMessage from "../BaseComponents/BaseMessage";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { AddressType } from "@/types";
 import { addressSchema } from "@/validations";
 

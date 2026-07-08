@@ -2,7 +2,7 @@ import { getUserAddresses } from "@/app/actions/dashboardActions/userAddressesAc
 import AddressPageClientComponents from "@/app/components/dashboard/AddressPageClientComponents";
 
 const AddressesPage = async () => {
-  const { data, success, message } = await getUserAddresses();
+  const { data } = await getUserAddresses();
 
   return <AddressPageClientComponents initialData={data ?? []} />;
 };
