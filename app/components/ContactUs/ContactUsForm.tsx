@@ -60,7 +60,7 @@ const ContactUsForm = () => {
         />
 
         <BaseInput
-          label="ایمیل"
+          label="شماره موبایل"
           type="phone"
           placeholder="example@gmail.com"
           dir="ltr"
