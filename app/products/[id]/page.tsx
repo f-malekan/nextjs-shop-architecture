@@ -36,7 +36,7 @@ const ProductDetailsPage = async ({ params }: Props) => {
     message,
   } = await getProductWithVariants(productId);
 
-  if (!success || !product) return <ErrorState title={message} />;
+  if (!success || !product) return <ErrorState title={message ?? undefined} />;
 
   return (
     <div className="container mx-auto px-4 py-5">
