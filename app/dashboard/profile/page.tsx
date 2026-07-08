@@ -21,7 +21,7 @@ const page = async () => {
 
   const { data: user, success, message } = await getUser();
 
-  if (!success) return <ErrorState title={message} />;
+  if (!success) return <ErrorState title={message ?? undefined} />;
   if (!user) {
     return (
       <ErrorState title="حساب کاربری شما یافت نشد. لطفا دوباره وارد شوید." />

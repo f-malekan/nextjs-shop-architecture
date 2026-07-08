@@ -1,7 +1,7 @@
 "use client";
 import Link from "next/link";
 import NavBarCategory from "./NavBarCategory";
-import { useState, useEffect } from "react";
+import { useState, useEffect, Suspense } from "react";
 import { IoMenu, IoClose } from "react-icons/io5";
 import { usePathname } from "next/navigation";
 
@@ -45,7 +45,9 @@ const NavBar = ({ className }: Props) => {
       >
         <Link href="/">خانه</Link>
         <Link href="/products">فروشگاه</Link>
-        <NavBarCategory />
+        <Suspense fallback={null}>
+          <NavBarCategory />
+        </Suspense>
 
         <Link href="/contact-us" className="text-nowrap">
           تماس با ما

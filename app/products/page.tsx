@@ -27,7 +27,7 @@ const ProductsPage = async ({ searchParams }: Props) => {
     totalCount,
   } = await getAllProducts(category, search, page);
 
-  if (!success) return <ErrorState title={message} />;
+  if (!success) return <ErrorState title={message ?? undefined} />;
 
   if (!products || products.length === 0) {
     return (
