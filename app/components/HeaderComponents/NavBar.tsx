@@ -2,7 +2,6 @@
 import Link from "next/link";
 import NavBarCategory from "./NavBarCategory";
 import { useState, useEffect } from "react";
-import { CategoryType } from "@/types";
 import { IoMenu, IoClose } from "react-icons/io5";
 import { usePathname } from "next/navigation";
 

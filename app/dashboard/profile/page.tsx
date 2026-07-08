@@ -1,11 +1,9 @@
 import ProfileForm from "@/app/components/dashboard/ProfileForm";
 import { redirect } from "next/navigation";
 import { auth } from "@/app/auth";
-import ChangePasswordForm from "@/app/components/dashboard/ChangePasswordForm";
 import { getUser } from "@/app/actions/dashboardActions/userProfileActions";
 import ErrorState from "@/app/components/CommonComponents/ErrorState";
 import type { Metadata } from "next";
-import DashboardDefaultContainer from "@/app/components/dashboard/DashboardDefaultContainer";
 
 export const metadata: Metadata = {
   title: "پروفایل من | داشبورد",
@@ -31,8 +29,7 @@ const page = async () => {
   }
   return (
     <div>
-      <ProfileForm user={{ name: user.name ?? "", email: user.email! }} />
-      {/* <ChangePasswordForm /> */}
+      <ProfileForm user={{ name: user.name ?? "", phone: user.phone! }} />
     </div>
   );
 };

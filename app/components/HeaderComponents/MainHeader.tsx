@@ -4,11 +4,8 @@ import SignInButton from "../Auth/SignInButton";
 import Link from "next/link";
 import Image from "next/image";
 import SearchComponent from "./SearchComponent";
-import { getCategories } from "@/app/actions/categoryActions";
-import ErrorState from "../CommonComponents/ErrorState";
 
 const MainHeader = async () => {
- 
   return (
     <header className="top-0 z-50 mb-3 md:mb-10 ">
       <div className="max-w-360 mx-auto flex p-3 md:px-12 lg:px-20 justify-between items-center">
@@ -25,9 +22,7 @@ const MainHeader = async () => {
 
         <div className="flex md:gap-6 items-center md:justify-between md:flex-2">
           <div className="flex md:order-1 items-center sm:gap-2 lg:gap-3">
-            <div className="">
-              <SearchComponent />
-            </div>
+            <SearchComponent />
 
             <CartButton />
 

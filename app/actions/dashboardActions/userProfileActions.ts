@@ -8,7 +8,7 @@ import {
   updateProfileSchema,
   updatePasswordSchema,
   UpdatePasswordInputs,
-} from "@/lib/validations/account";
+} from "@/validations";
 
 export const getUser = async () => {
   try {
@@ -41,12 +41,12 @@ export const updateProfile = async (data: UpdateProfileInput) => {
       return { success: false, message: "داده‌های وارد شده نامعتبر هستند" };
     }
 
-    const { name, email } = parsed.data;
+    const { name, phone } = parsed.data;
 
-    if (email) {
+    if (phone) {
       const existingUser = await prisma.user.findFirst({
         where: {
-          email,
+          phone,
           NOT: { id: session.user.id },
         },
       });
@@ -61,7 +61,7 @@ export const updateProfile = async (data: UpdateProfileInput) => {
 
     await prisma.user.update({
       where: { id: session.user.id },
-      data: { name, email },
+      data: { name, phone },
     });
 
     return {

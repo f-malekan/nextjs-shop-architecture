@@ -1,21 +1,32 @@
 "use client";
-import { login } from "../../actions/loginActions";
+import { login } from "../../actions/authActions";
 import BaseButton from "../BaseComponents/BaseButton";
 import { useActionState, useEffect } from "react";
 import BaseInput from "../BaseComponents/BaseInput";
 import Image from "next/image";
 import { useAuthModalStore } from "@/store/useAuthModalStore";
+import { toast } from "sonner";
+
 
 const SignInForm = () => {
   const [state, formAction] = useActionState(login, {
+    success: false,
     message: null,
     errors: {},
   });
 
-  const { setView,closeModal } = useAuthModalStore();
+  const { setView, closeModal } = useAuthModalStore();
 
   useEffect(() => {
-    if (!state?.message && Object.keys(state?.errors || {}).length === 0) {
+      if (!state.message) return;
+
+    if (!state.success) {
+      toast.error(state.message);
+      return;
+    }
+
+    if (Object.keys(state.errors || {}).length === 0) {
+      toast.success(state.message)
       closeModal();
     }
   }, [state, closeModal]);
@@ -35,11 +46,11 @@ const SignInForm = () => {
       </p>
       <form action={formAction} className="grow flex flex-col">
         <BaseInput
-          name="email"
-          type="email"
-          label="ایمیل"
-          placeholder="example@mail.com"
-          error={state.errors?.email}
+          name="phone"
+          type="phone"
+          label="شماره موبایل"
+          placeholder="09999999999"
+          error={state.errors?.phone}
         />
 
         <BaseInput
@@ -50,12 +61,6 @@ const SignInForm = () => {
           error={state.errors?.password}
           className="mb-4"
         />
-
-        {state.message && (
-          <p className="rounded-xl border border-red-200 bg-red-50 px-3 text-right text-sm text-error">
-            {state.message}
-          </p>
-        )}
 
         <BaseButton
           type="submit"

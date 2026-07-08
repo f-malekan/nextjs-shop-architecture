@@ -1,7 +1,7 @@
 import Image from "next/image";
 import HeroSlider from "./HeroSlider";
-import BaseLink from "../BaseComponents/BaseLink";
 import BaseTag from "../BaseComponents/BaseTag";
+import BaseButton from "../BaseComponents/BaseButton";
 
 const badges = ["کالکشن‌های متنوع", "مد و فشن", "سبک و شیک"];
 
@@ -43,9 +43,9 @@ export default function HeroSection() {
             </div>
 
             <div className="flex items-center gap-2 my-5">
-              <BaseLink href="/products">
+              <BaseButton href="/products">
                 مشاهده کالکشن ها
-              </BaseLink>
+              </BaseButton>
               <svg
                 width="49"
                 height="40"

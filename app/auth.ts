@@ -9,20 +9,20 @@ const authOptions: NextAuthConfig = {
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   adapter: PrismaAdapter(prisma as any),
   session: {
-    strategy: 'jwt'
+    strategy: "jwt",
   },
   providers: [
     Credentials({
       credentials: {
-        email: {},
+        phone: {},
         password: {},
       },
       async authorize(credentials) {
-        if (!credentials?.email || !credentials?.password) return { error: "هر دو وارد کن" };
+        if (!credentials?.phone || !credentials?.password) return null;
 
         const user = await prisma.user.findUnique({
           where: {
-            email: credentials.email as string,
+            phone: credentials.phone as string,
           },
         });
 
@@ -30,21 +30,25 @@ const authOptions: NextAuthConfig = {
 
         const isPasswordValid = await bcrypt.compare(
           credentials.password as string,
-          user.password
+          user.password,
         );
 
         if (!isPasswordValid) {
           return null;
         }
 
-        return { id: user.id, email: user.email, name: user.name, image: user.image};
+        return {
+          id: user.id,
+          phone: user.phone,
+          name: user.name,
+          image: user.image,
+        };
       },
     }),
   ],
 
   callbacks: {
     async jwt({ token, user }) {
-    
       if (user) {
         token.id = user.id;
       }
@@ -52,7 +56,6 @@ const authOptions: NextAuthConfig = {
     },
 
     async session({ session, token }) {
-      // هر بار session ساخته می‌شود
       if (session.user) {
         session.user.id = token.id as string;
       }

@@ -7,6 +7,7 @@ interface Props {
   active?: boolean;
   hasBorder?: boolean;
   onClick?: () => void;
+  className?: string;
 }
 
 const NavItem = ({
@@ -16,16 +17,17 @@ const NavItem = ({
   active = false,
   hasBorder = true,
   onClick,
+  className,
 }: Props) => {
   return (
     <a
       href={href}
       onClick={onClick}
-      className={`flex rounded transition-all px-2 py-4 gap-2 cursor-pointer items-center ${hasBorder ? "border-b border-gray-4 md:border-none" : ""} ${
-        active ? "border-r-4 bg-gray-2 border-gray-10" : ""
+      className={`${className}  flex rounded transition-all p-2 md:px-2 md:py-4 md:gap-2 cursor-pointer items-center ${hasBorder ? "border-b border-gray-4 md:border-none" : ""} ${
+        active ? "border-b-4 md:border-r-4 md:bg-gray-2 border-gray-10" : ""
       } `}
     >
-      <Icon className="text-xl" />
+      <Icon className="hidden md:block text-xl" />
 
       {label}
     </a>

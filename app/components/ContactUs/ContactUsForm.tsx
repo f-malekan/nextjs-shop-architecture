@@ -9,13 +9,7 @@ import BaseButton from "../BaseComponents/BaseButton";
 import BaseInput from "../BaseComponents/BaseInput";
 import BaseTextarea from "../BaseComponents/BaseTextArea";
 import BaseSelect from "../BaseComponents/BaseSelect";
-
-const contactSchema = z.object({
-  name: z.string().min(3, "نام باید حداقل ۳ کاراکتر باشد"),
-  email: z.string().email("آدرس ایمیل معتبر نیست"),
-  subject: z.string().min(1, "لطفاً یک موضوع انتخاب کنید"),
-  message: z.string().min(10, "متن پیام باید حداقل ۱۰ کاراکتر باشد"),
-});
+import { contactSchema } from "@/validations";
 
 type ContactFormData = z.infer<typeof contactSchema>;
 
@@ -67,11 +61,11 @@ const ContactUsForm = () => {
 
         <BaseInput
           label="ایمیل"
-          type="email"
+          type="phone"
           placeholder="example@gmail.com"
           dir="ltr"
-          error={errors.email ? [errors.email.message!] : undefined}
-          {...register("email")}
+          error={errors.phone ? [errors.phone.message!] : undefined}
+          {...register("phone")}
         />
 
         <BaseSelect

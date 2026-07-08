@@ -6,6 +6,7 @@ import AuthProvider from "./auth/Provider";
 import Footer from "./components/Footer";
 import AuthModal from "./components/Auth/AuthModal";
 import localFont from "next/font/local";
+import { Toaster } from "sonner";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -38,15 +39,18 @@ export default function RootLayout({
 }>) {
   return (
     <html
-      lang="en"
+      lang="fa"
       className={`${geistSans.variable} ${geistMono.variable} ${yekan.variable} h-full antialiased`}
+      dir="rtl"
     >
       <body>
         <AuthProvider>
-            <MainHeader />
+          <MainHeader />
           {children}
         </AuthProvider>
         <AuthModal />
+        <Toaster position="bottom-center" richColors/>
+
         <Footer />
       </body>
     </html>

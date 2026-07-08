@@ -13,6 +13,7 @@ import { iranCities } from "@/constants";
 import BaseMessage from "../BaseComponents/BaseMessage";
 import { useState, useEffect } from "react";
 import { AddressType } from "@/types";
+import { addressSchema } from "@/validations";
 
 interface Props {
   initialData?: AddressType;
@@ -20,30 +21,6 @@ interface Props {
 }
 
 const provinces = iranCities.map((i) => i.name);
-
-const addressSchema = z.object({
-  title: z.string().min(2, "عنوان آدرس الزامی است (مثلاً: خانه، محل کار)"),
-  receiverName: z
-    .string()
-    .optional()
-    .transform((val) => (val === "" ? undefined : val))
-    .pipe(z.string().min(3, "نام گیرنده باید حداقل ۳ حرف باشد.").optional()),
-  phoneNumber: z
-    .string()
-    .optional()
-    .transform((v) => (v === "" ? undefined : v))
-    .pipe(
-      z
-        .string()
-        .regex(/^09\d{9}$/, "فرمت شماره موبایل اشتباه است.")
-        .optional(),
-    ),
-  province: z.string().min(1, "لطفاً استان را انتخاب کنید"),
-  city: z.string().min(1, "لطفاً شهر را انتخاب کنید"),
-  fullAddress: z.string().min(10, "آدرس دقیق باید حداقل ۱۰ کاراکتر باشد"),
-  postalCode: z.string().length(10, "کد پستی باید ۱۰ رقم باشد"),
-  isDefault: z.boolean().default(false).optional(),
-});
 
 type AdressFormDataType = z.infer<typeof addressSchema>;
 

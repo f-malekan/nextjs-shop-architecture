@@ -93,8 +93,8 @@ export interface CategoryType {
 export interface UserType {
   id: string;
   name: string;
-  email: string;
-  emailVerified: Date;
+  phone: string;
+  phoneVerified: Date;
   image: string;
   password: string;
 
@@ -102,10 +102,10 @@ export interface UserType {
   addresses?: AddressType[];
 }
 
-export type ActionResultType<T = void> = {
+export type ActionResultType<T extends object = Record<string, string[]>> = {
   success: boolean;
-  data?: T;
-  message?: string;
+  message: string | null;
+  errors?: T;
 };
 
 export enum OrderStatus {
@@ -148,7 +148,7 @@ export interface OrderType {
   items?: OrderItemType[];
 
   addressId?: string | null;
-  address?: AddressType | null; 
+  address?: AddressType | null;
 
   shippingReceiverName: string;
   shippingPhone: string;

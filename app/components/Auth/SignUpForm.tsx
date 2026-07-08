@@ -2,35 +2,52 @@
 
 import { useAuthModalStore } from "@/store/useAuthModalStore";
 import BaseInput from "../BaseComponents/BaseInput";
-import { register } from "@/app/actions/registerActions";
+import { signUp } from "@/app/actions/authActions";
 import BaseButton from "../BaseComponents/BaseButton";
+import { toast } from "sonner";
+import { useActionState, useEffect } from "react";
 
 const SignUpForm = () => {
   const { setView, closeModal } = useAuthModalStore();
 
-  const handleSubmit = async (formData: FormData) => {
-    const res = await register(formData);
-    if (res?.error) alert(res.error);
-    else alert(res?.success || "ثبت‌نام با موفقیت انجام شد");
-    closeModal();
-  };
+  const [state, formAction] = useActionState(signUp, {
+    success: false,
+    message: null,
+    errors: {},
+  });
+
+  useEffect(() => {
+    if (!state.message) return;
+
+    if (!state.success) {
+      toast.error(state.message);
+      return;
+    }
+
+    if (Object.keys(state.errors || {}).length === 0) {
+      toast.success(state.message);
+      closeModal();
+    }
+  }, [state, closeModal]);
 
   return (
-    <form action={handleSubmit} className="grow flex flex-col">
+    <form action={formAction} className="grow flex flex-col">
       <BaseInput
         name="name"
         label="نام"
         type="text"
         required
         placeholder="نام خود را وارد کنید"
+        error={state.errors?.name}
       />
 
       <BaseInput
-        name="email"
-        type="email"
+        name="phone"
+        type="phone"
         required
-        placeholder="example@mail.com"
-        label="ایمیل"
+        placeholder="09999999999"
+        label="شماره موبایل"
+        error={state.errors?.phone}
       />
 
       <BaseInput
@@ -40,6 +57,7 @@ const SignUpForm = () => {
         placeholder="••••••••"
         label="رمز عبور"
         className="mb-4"
+        error={state.errors?.password}
       />
 
       <button

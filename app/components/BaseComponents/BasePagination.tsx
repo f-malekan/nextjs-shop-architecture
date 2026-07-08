@@ -17,7 +17,7 @@ const BasePagination = ({ currentPage, totalPages, className }: Props) => {
         (i >= currentPage - 1 && i <= currentPage + 1)
       ) {
         pages.push(i);
-      } else if (pages[pages.length - 1] !== "...") {
+      } else if (pages.at(-1) !== "...") {
         pages.push("...");
       }
     }

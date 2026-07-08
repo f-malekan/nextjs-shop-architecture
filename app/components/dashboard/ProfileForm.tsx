@@ -2,17 +2,13 @@
 
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
-import {
-  updateProfileSchema,
-  UpdateProfileInput,
-} from "@/lib/validations/account";
+import { updateProfileSchema, UpdateProfileInput } from "@/validations";
 import { updateProfile } from "@/app/actions/dashboardActions/userProfileActions";
 import BaseInput from "../BaseComponents/BaseInput";
 import BaseButton from "../BaseComponents/BaseButton";
-import { UserType } from "@/types";
 import DashboardDefaultContainer from "./DashboardDefaultContainer";
 
-const ProfileForm = ({ user }: { user: { email: string; name: string } }) => {
+const ProfileForm = ({ user }: { user: { phone: string; name: string } }) => {
   const {
     register,
     handleSubmit,
@@ -22,7 +18,7 @@ const ProfileForm = ({ user }: { user: { email: string; name: string } }) => {
     resolver: zodResolver(updateProfileSchema),
     defaultValues: {
       name: user?.name ?? "",
-      email: user?.email ?? "",
+      phone: user?.phone ?? "",
     },
   });
 
@@ -56,10 +52,10 @@ const ProfileForm = ({ user }: { user: { email: string; name: string } }) => {
             error={errors.name ? [errors.name.message!] : undefined}
           />
           <BaseInput
-            {...register("email")}
-            label="آدرس ایمیل"
-            placeholder="example@mail.com"
-            error={errors.email ? [errors.email.message!] : undefined}
+            {...register("phone")}
+            label="شماره موبایل"
+            placeholder="09999999999"
+            error={errors.phone ? [errors.phone.message!] : undefined}
           />
         </div>
 

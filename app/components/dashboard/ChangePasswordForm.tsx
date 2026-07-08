@@ -2,10 +2,7 @@
 
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
-import {
-  updatePasswordSchema,
-  UpdatePasswordInputs,
-} from "@/lib/validations/account";
+import { updatePasswordSchema, UpdatePasswordInputs } from "@/validations";
 
 import { changePassword } from "@/app/actions/dashboardActions/userProfileActions";
 import BaseInput from "../BaseComponents/BaseInput";
