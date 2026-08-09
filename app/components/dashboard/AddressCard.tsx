@@ -35,11 +35,11 @@ const AddressCard = ({
         {receiverName && `<CiUser /> ${receiverName}`}
         {receiverPhone && `<CiPhone /> ${receiverPhone}`}
       </div>
-      <div>
-        <button onClick={onEdit}>
+      <div className="flex gap-1">
+        <button onClick={onEdit} className="cursor-pointer">
           <CiEdit />
         </button>
-        <button onClick={deleteAdress}>
+        <button onClick={deleteAdress} className="cursor-pointer">
           <AiOutlineDelete />
         </button>
       </div>
