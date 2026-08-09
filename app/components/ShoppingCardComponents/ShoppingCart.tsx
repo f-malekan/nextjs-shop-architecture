@@ -4,6 +4,7 @@ import useCartStore from "@/store/useCartStore";
 import PaymentButton from "./PaymentButton";
 import EmptyState from "../CommonComponents/EmptyState";
 import Image from "next/image";
+import BaseButton from "../BaseComponents/BaseButton";
 
 const ShoppingCart = () => {
   const { items, getTotalPrice } = useCartStore();
@@ -126,7 +127,8 @@ const ShoppingCart = () => {
                   کالاهای موجود در سبد شما رزرو و ثبت نشده اند. برای ثبت سفارش
                   مراحل بعدی را تکمیل کنید.
                 </p>
-                <PaymentButton />
+                {/* <PaymentButton /> */}
+                <BaseButton href="/shoppingCart/shippingAddress" className="w-full">انتخاب آدرس</BaseButton>
               </div>
             </div>
           </div>}

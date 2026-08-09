@@ -46,7 +46,7 @@ const ProductCounter = ({
       <button
         onClick={handleRemoveItem}
         disabled={quantity === 0}
-        className="flex items-center justify-center w-7 h-7 rounded-full bg-white shadow text-lg font-semibold hover:bg-gray-200 disabled:opacity-40 disabled:cursor-not-allowed"
+        className="flex items-center justify-center w-7 h-7 cursor-pointer rounded-full bg-white shadow text-lg font-semibold hover:bg-gray-200 disabled:opacity-40 disabled:cursor-not-allowed"
       >
         −
       </button>
@@ -57,7 +57,7 @@ const ProductCounter = ({
 
       <button
         onClick={handleAddItem}
-        className="flex items-center justify-center w-7 h-7 rounded-full bg-white shadow text-lg font-semibold hover:bg-gray-200"
+        className="flex items-center justify-center w-7 h-7 cursor-pointer rounded-full bg-white shadow text-lg font-semibold hover:bg-gray-200"
       >
         +
       </button>

@@ -25,7 +25,7 @@ const AddressCard = ({
 
   return (
     <div
-      className={`border border-gray-4 rounded-xl flex justify-between p-4 ${className}`}
+      className={`border border-gray-4 rounded-xl flex justify-between p-4 w-full ${className}`}
     >
       <div>
         <div className="flex gap-2">
