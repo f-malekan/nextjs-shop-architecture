@@ -41,7 +41,7 @@ const DashboardLayout = ({ children }: { children: React.ReactNode }) => {
             label="خروج"
             icon={CiLogout}
             hasBorder={false}
-            className="hidden md:block"
+            className="hidden md:flex"
           />
         </nav>
       </aside>

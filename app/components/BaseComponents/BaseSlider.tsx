@@ -128,7 +128,7 @@ export const BaseSlider = ({
           <div className="flex">
             {React.Children.map(children, (child) => (
               <div
-                className="min-w-0 pl-4"
+                className="pl-4"
                 style={{ flex: `0 0 ${slideWidth}` }}
               >
                 {child}
