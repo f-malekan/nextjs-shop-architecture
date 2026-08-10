@@ -3,6 +3,7 @@
 import prisma from "@/lib/prisma";
 import { auth } from "../auth";
 import type { ShoppingCartItemType } from "@/types";
+import { getUserDefaultAddress } from "./dashboardActions/userAddressesActions";
 
 interface TempOrderItem {
   productId: string;
@@ -26,6 +27,14 @@ export async function createOrder(items: ShoppingCartItemType[]) {
     return {
       success: false,
       message: "سبد خرید شما خالی است.",
+    };
+  }
+
+  const { data: address } = await getUserDefaultAddress();
+  if (!address) {
+    return {
+      success: false,
+      message: "آدرسی ثبت نکرده اید.",
     };
   }
 
@@ -76,7 +85,7 @@ export async function createOrder(items: ShoppingCartItemType[]) {
           userId,
           totalAmount,
           status: "PENDING",
-          addressId: "1",
+          addressId: address.id,
           shippingReceiverName: "string",
           shippingPhone: "string",
           shippingProvince: "string",

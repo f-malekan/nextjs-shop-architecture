@@ -99,3 +99,24 @@ export const getUserAddresses = async () => {
     return { success: false, message: "خطایی در دریافت اطلاعات رخ داد." };
   }
 };
+
+export const getUserDefaultAddress = async () => {
+  try {
+    const userId = await getUserId();
+    if (!userId)
+      return { success: false, message: "شما دسترسی لازم را ندارید" };
+
+    const address = await prisma.address.findMany({
+      where: {
+        userId: userId,
+        isDeleted: false,
+        isDefault: true,
+      },
+    });
+
+    return { success: true, data: address[0] };
+  } catch (error) {
+    console.error(error);
+    return { success: false, message: "خطایی در دریافت اطلاعات رخ داد." };
+  }
+};
