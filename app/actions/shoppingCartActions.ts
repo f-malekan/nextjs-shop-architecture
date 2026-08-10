@@ -14,9 +14,10 @@ interface TempOrderItem {
 
 export async function createOrder(items: ShoppingCartItemType[]) {
   const session = await auth();
+  const user = session?.user;
   const userId = session?.user?.id;
 
-  if (!userId) {
+  if (!user || !userId) {
     return {
       success: false,
       message: "لطفاً ابتدا وارد حساب کاربری خود شوید.",
@@ -84,14 +85,14 @@ export async function createOrder(items: ShoppingCartItemType[]) {
         data: {
           userId,
           totalAmount,
-          status: "PENDING",
+          status: "PAID",
           addressId: address.id,
-          shippingReceiverName: "string",
-          shippingPhone: "string",
-          shippingProvince: "string",
-          shippingCity: "string",
-          shippingAddress: "string",
-          shippingPostalCode: "string",
+          shippingReceiverName: address.receiverName ?? user.phone,
+          shippingPhone: address.phoneNumber ?? user.phone,
+          shippingProvince: address.province,
+          shippingCity: address.city,
+          shippingAddress: address.fullAddress,
+          shippingPostalCode: address.postalCode,
         },
       });
 
