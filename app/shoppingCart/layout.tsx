@@ -1,7 +1,11 @@
 import Link from "next/link";
 import React from "react";
+import { auth } from "../auth";
+import LoginRequiredWarning from "../components/Auth/LoginRequiredWarning";
 
-const OrderLayout = ({ children }: { children: React.ReactNode }) => {
+const OrderLayout = async ({ children }: { children: React.ReactNode }) => {
+  const session = await auth();
+  
   return (
     <div className="container">
       <div className="flex justify-between items-center text-gray-10 mb-10">
@@ -11,6 +15,8 @@ const OrderLayout = ({ children }: { children: React.ReactNode }) => {
         <div className="w-100 border-t-2 border-dashed border-gray-4"></div>
         <Link href="/shoppingCart/payment">پرداخت</Link>
       </div>
+
+      {!session && <LoginRequiredWarning />}
 
       {children}
     </div>

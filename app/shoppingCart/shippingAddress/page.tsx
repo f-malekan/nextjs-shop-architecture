@@ -5,7 +5,7 @@ const ShippingAddressPage = async () => {
   const { data } = await getUserAddresses();
 
   return (
-    <div className="">
+    <div>
       <AddressPageClientComponents initialData={data ?? []} />
     </div>
   );
