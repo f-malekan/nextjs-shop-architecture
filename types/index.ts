@@ -1,3 +1,21 @@
+import "next-auth";
+
+declare module "next-auth" {
+  interface User {
+    phone: string;
+  }
+
+  interface Session {
+    user: {
+      id: string;
+      phone: string;
+      name?: string | null;
+      email?: string | null;
+      image?: string | null;
+    };
+  }
+}
+
 export interface Color {
   id: string;
   name: string;
@@ -102,10 +120,9 @@ export interface UserType {
   addresses?: AddressType[];
 }
 
-
 export type ActionResultType<
   TData = never,
-  TErrors = Record<string, string[]>
+  TErrors = Record<string, string[]>,
 > = {
   success: boolean;
   message?: string | null;
